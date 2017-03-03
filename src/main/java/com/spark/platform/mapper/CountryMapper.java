@@ -25,12 +25,9 @@
 package com.spark.platform.mapper;
 
 
-import com.spark.platform.model.UserInfo;
+import com.spark.platform.model.Country;
 import com.spark.platform.util.MyMapper;
 
-/**
- * @author zhaoguoxian
- * @since 2016-01-22 22:17
- */
-public interface UserInfoMapper extends MyMapper<UserInfo> {
+public interface CountryMapper extends MyMapper<Country> {
+
 }

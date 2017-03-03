@@ -25,7 +25,7 @@
 package com.spark.platform.mapper;
 
 import com.spark.platform.model.City;
-import com.spark.platform.util.ClusterMapper;
+import com.spark.platform.util.MyMapper;
 
 import java.util.List;
 
@@ -33,6 +33,6 @@ import java.util.List;
  * @author zhaoguoxian
  * @since 2016-01-22 22:17
  */
-public interface CityMapper extends ClusterMapper<City> {
+public interface CityMapper extends MyMapper<City> {
      List<City> getAll1();
 }

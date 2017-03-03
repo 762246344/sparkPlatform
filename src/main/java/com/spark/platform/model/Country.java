@@ -22,15 +22,53 @@
  * THE SOFTWARE.
  */
 
-package com.spark.platform.mapper;
+package com.spark.platform.model;
 
+public class Country extends BaseEntity {
+    /**
+     * 名称
+     */
+    private String countryname;
 
-import com.spark.platform.model.UserInfo;
-import com.spark.platform.util.MyMapper;
+    /**
+     * 代码
+     */
+    private String countrycode;
 
-/**
- * @author zhaoguoxian
- * @since 2016-01-22 22:17
- */
-public interface UserInfoMapper extends MyMapper<UserInfo> {
+    /**
+     * 获取名称
+     *
+     * @return countryname - 名称
+     */
+    public String getCountryname() {
+        return countryname;
+    }
+
+    /**
+     * 设置名称
+     *
+     * @param countryname 名称
+     */
+    public void setCountryname(String countryname) {
+        this.countryname = countryname;
+    }
+
+    /**
+     * 获取代码
+     *
+     * @return countrycode - 代码
+     */
+    public String getCountrycode() {
+        return countrycode;
+    }
+
+    /**
+     * 设置代码
+     *
+     * @param countrycode 代码
+     */
+    public void setCountrycode(String countrycode) {
+        this.countrycode = countrycode;
+    }
+
 }
