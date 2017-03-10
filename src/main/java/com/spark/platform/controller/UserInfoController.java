@@ -1,6 +1,7 @@
 package com.spark.platform.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.spark.platform.model.Info;
 import com.spark.platform.model.UserInfo;
 import com.spark.platform.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,9 @@ public class UserInfoController {
     private UserInfoService userInfoService;
 
     @RequestMapping
-    public PageInfo<UserInfo> getAll(UserInfo userInfo) {
+    public Info getAll(UserInfo userInfo) {
         List<UserInfo> userInfoList = userInfoService.getAll(userInfo);
-        return new PageInfo<UserInfo>(userInfoList);
+        return new Info("0","success",userInfoList);
     }
 
     @RequestMapping(value = "/add")
