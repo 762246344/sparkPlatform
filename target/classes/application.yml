@@ -8,9 +8,9 @@ logging:
 spring:
     datasource:
         name: cluster_portal
-        url: jdbc:mysql://10.33.106.216:3306/cluster_portal
-        username: test_wy
-        password: test_wy
+        url: jdbc:mysql://localhost:3306/spark
+        username: root
+        password: 103123
         # 使用druid数据源portal
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
