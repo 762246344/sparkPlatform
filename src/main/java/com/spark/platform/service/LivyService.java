@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class HdfsService {
+public class LivyService {
 
-    public Info ownList() {
+    public Info getSession() {
         return new Info("0","",null);
     }
 

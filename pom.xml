@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.lianjia.data.clusterportal</groupId>
-    <artifactId>portal</artifactId>
+    <groupId>com.spark.platform</groupId>
+    <artifactId>spark</artifactId>
     <version>1.0-SNAPSHOT</version>
 
 
@@ -20,6 +20,13 @@
 
     <dependencies>
 
+        <!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.3</version>
+            <classifier>jdk15</classifier>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -122,6 +129,19 @@
             <artifactId>druid</artifactId>
             <version>1.0.27</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.hive/hive-jdbc -->
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-jdbc</artifactId>
+            <version>1.2.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.jetty.aggregate</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <!--hadoop-->
         <!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-common -->
         <dependency>
@@ -135,6 +155,13 @@
             <artifactId>hadoop-hdfs</artifactId>
             <version>2.4.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-metastore</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+
 
     </dependencies>
 
