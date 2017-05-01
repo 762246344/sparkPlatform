@@ -1,13 +1,16 @@
 package com.spark.platform.util;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.permission.AclEntry;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,7 +27,7 @@ public class HdfsUtil {
         conf = new Configuration();
         conf.set("fs.hdfs.impl","org.apache.hadoop.hdfs.DistributedFileSystem");
         try {
-            fs = FileSystem.get(URI.create("hdfs://test-bd-hadoop00.lianjia.com:9000"), conf);
+            fs = FileSystem.get(URI.create("hdfs://master:9000"), conf);
         }catch (Exception e){
 
         }
@@ -35,6 +38,23 @@ public class HdfsUtil {
 
     public boolean delete(String path,boolean recursive) throws IOException{
         return fs.delete(new Path(path),recursive);
+    }
+
+    public  static void put(String hdfsPath, MultipartFile file) {
+        Configuration conf = new Configuration();
+        try {
+            InputStream inputStream = file.getInputStream();
+            FSDataOutputStream outStream = fs.create(new Path(hdfsPath));
+            byte buffer[] = new byte[1024];
+            int length = 0;
+            while ((length = inputStream.read(buffer)) > 0) {
+                outStream.write(buffer, 0, length);
+            }
+            inputStream.close();
+            outStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void printDir(Path path)

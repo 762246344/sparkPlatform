@@ -45,11 +45,15 @@ public class SqlService {
                 }
                 list.add(ss);
             }
-            return new Info("0","success",list);
+            return new Info("0", "success", list);
         } catch (Exception e) {
             e.printStackTrace();
-            return new Info("1","Exception:"+e.getMessage(),null);
+            return new Info("1", "Exception:" + e.getMessage(), null);
         }
+    }
+
+    public Info getAllTables() {
+        return query("show tables");
     }
 }
 

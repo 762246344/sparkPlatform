@@ -24,17 +24,11 @@
 
 package com.spark.platform.conf;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.context.annotation.Bean;
+import com.spark.platform.interceptor.AccessInterceptor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfig;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
-import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 /**
  * @author zhaoguoxian
@@ -48,7 +42,13 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
 
-//    @Override
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        super.addInterceptors(registry);
+        registry.addInterceptor(new AccessInterceptor()).addPathPatterns("/**");
+    }
+
+    //    @Override
 //    public void configureViewResolvers(ViewResolverRegistry registry) {
 //        registry.enableContentNegotiation(new MappingJackson2JsonView());
 //        registry.freeMarker().cache(false);

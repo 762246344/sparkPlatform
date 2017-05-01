@@ -1,25 +1,32 @@
 package com.spark.platform.controller;
 
 import com.spark.platform.model.Info;
-import org.springframework.web.bind.annotation.*;
+import com.spark.platform.service.HdfsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.io.IOException;
+import java.io.InputStream;
 
-/**
- * @author zhaoguoxian
- * @since 2015-12-19 11:10
- */
+
 @RestController
 @RequestMapping("/hdfs")
 public class HdfsController {
 
+    @Autowired
+    private HdfsService hdfsService;
+
     @RequestMapping(value = "/own/list")
     public Info ownList(@RequestParam(value = "username", required = true) String username) {
-        return new Info("0","",null);
+        return new Info("0", "", null);
+    }
+
+    @RequestMapping(value = "/upload")
+    public Info upload(@RequestParam(value = "file", required = false) MultipartFile file) {
+        return hdfsService.put(file);
     }
 
 }

@@ -29,8 +29,8 @@ import com.spark.platform.model.UserInfo;
 import com.spark.platform.util.MyMapper;
 
 /**
- * @author zhaoguoxian
- * @since 2016-01-22 22:17
+ * @author zhouqi
+ * @since 2016-03-22 22:17
  */
 public interface UserInfoMapper extends MyMapper<UserInfo> {
 }

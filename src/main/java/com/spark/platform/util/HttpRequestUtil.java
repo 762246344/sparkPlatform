@@ -17,6 +17,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URLEncoder;
 
 /**
  * Created by dengfangyuan on 2017/1/6.
@@ -60,6 +61,25 @@ public class HttpRequestUtil {
             request.setEntity(requestEntity);
             HttpResponse response = client.execute(request);
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK || response.getStatusLine().getStatusCode() == 201) {
+                String strResult = EntityUtils.toString(response.getEntity());
+                jsonObject = JSONObject.fromObject(strResult);
+            } else {
+                logger.warn("post请求提交失败:" + url);
+            }
+        } catch (Exception e) {
+            logger.warn("post请求提交失败:" + url, e);
+        }
+        return jsonObject;
+    }
+    public static JSONObject httpPostForm(String data, String url) throws RuntimeException {
+        JSONObject jsonObject = null;
+        try {
+            DefaultHttpClient client = new SSLClient();
+            HttpPost request = new HttpPost(url);
+            HttpEntity requestEntity = new StringEntity(data, "application/x-www-form-urlencoded", "utf-8");
+            request.setEntity(requestEntity);
+            HttpResponse response = client.execute(request);
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 String strResult = EntityUtils.toString(response.getEntity());
                 jsonObject = JSONObject.fromObject(strResult);
             } else {

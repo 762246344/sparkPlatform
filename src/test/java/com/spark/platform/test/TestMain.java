@@ -1,5 +1,6 @@
 package com.spark.platform.test;
 
+import com.spark.platform.util.HttpRequestUtil;
 import com.spark.platform.util.LivyUtil;
 import com.sun.corba.se.spi.activation.TCPPortHelper;
 import net.sf.json.JSONArray;
@@ -8,27 +9,76 @@ import org.junit.Test;
 import sun.rmi.transport.tcp.TCPConnection;
 
 import javax.rmi.PortableRemoteObject;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketAddress;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by zhouqi on 2017/3/11.
  */
 public class TestMain {
 
-    @Test
-    public void testlivy(){
-        System.out.println(new LivyUtil().createSession("pyspark3"));
+    //@Test
+    public void testShell() {
+        try {
+            String order = "ipconfig";
+            Process process = Runtime.getRuntime().exec(order);
+            BufferedReader errorReader = new BufferedReader(new InputStreamReader(
+                    process.getErrorStream()));
+            BufferedReader inputReader = new BufferedReader(new InputStreamReader(
+                    process.getInputStream()));
+            //read(errorReader);
+            //read(inputReader);
+            //线程阻塞，等待程序结束返回退出值
+            System.out.println(process.waitFor());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    @Test
+
+    public void read(BufferedReader br) throws IOException {
+        String line = "";
+        while ((line = br.readLine()) != null) {
+            System.out.println(line);
+        }
+    }
+
+    //@Test
+    public void testlivy() {
+        String s = "28953456323";
+        char[] c = s.toCharArray();
+        String num = "" + c[0];
+        List<Integer> list = new ArrayList<Integer>();
+        for (int i = 1; i < c.length; i++) {
+            if (c[i - 1] >= c[i]) {
+                if (num.length() > 1) {
+                    list.add(Integer.parseInt(num));
+                }
+                num = "";
+            }
+            num += c[i];
+        }
+        if (num.length() > 1) {
+            list.add(Integer.parseInt(num));
+        }
+        System.out.println(Collections.max(list));
+        //System.out.println(getAddress("yarn.AppsCompleted/idc=zeus"));
+        //System.out.println(HttpRequestUtil.httpPostForm("endpoints%5B%5D=bigdata&counters%5B%5D=yarn.AllocatedContainers%2Fidc%3Dzeus&graph_type=h&_r=0.43983340881874855","http://monitor-dashboard.lianjia.com:18081/chart"));
+        //System.out.println(new LivyUtil().createSession("pyspark3"));
+    }
+
+    public String getAddress(String name) {
+        Integer id = HttpRequestUtil.httpPostForm("endpoints[]=bigdata&counters[]=" + name, "http://monitor-dashboard.lianjia.com:18081/chart").getInt("id");
+        return "http://monitor-dashboard.lianjia.com:18081/chart/big?id=" + id + "&start=-86400";
+    }
+
+    //@Test
     public void test() {
         String[] words = "we test coders".split(" ");
         String res = "";
@@ -45,7 +95,7 @@ public class TestMain {
 
     }
 
-    @Test
+    //@Test
     public void test2() {
         int[] a = {1, 2, 3, 4, 4, 4, 4};
         System.out.println(solution(a, 4));
@@ -73,7 +123,7 @@ public class TestMain {
         return -1;
     }
 
-    @Test
+    //@Test
     public void test3() {
         try {
             Socket client = new Socket();
@@ -86,7 +136,7 @@ public class TestMain {
         }
     }
 
-    @Test
+   // @Test
     public void test4() {
         String jdbcdriver = "org.apache.hive.jdbc.HiveDriver";
         String jdbcurl = "jdbc:hive2://master:10000/default";
