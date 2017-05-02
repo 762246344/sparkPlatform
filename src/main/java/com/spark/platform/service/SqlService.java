@@ -53,7 +53,28 @@ public class SqlService {
     }
 
     public Info getAllTables() {
-        return query("show tables");
+        String sql = "show tables";
+        String jdbcdriver = "org.apache.hive.jdbc.HiveDriver";
+        String jdbcurl = "jdbc:hive2://master:10000";
+        String username = "";
+        String password = "";
+        Connection conn = null;
+        try {
+            Class.forName(jdbcdriver);
+            conn = DriverManager.getConnection(jdbcurl, username, password);
+            Statement st = conn.createStatement();
+            ResultSet res = null;
+            System.out.println(sql);
+            res = st.executeQuery(sql);
+            List<String> list = new ArrayList<String>();
+            while (res.next()) {
+                list.add(res.getString(1));
+            }
+            return new Info("0", "success", list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Info("1", "Exception:" + e.getMessage(), null);
+        }
     }
 }
 

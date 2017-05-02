@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
@@ -49,7 +50,7 @@ public class Application extends WebMvcConfigurerAdapter {
     }
 
     @RequestMapping("/")
-    public String home() {
-        return "hello spark platform";
+    public ModelAndView home() {
+        return new ModelAndView("/static/spark.html");
     }
 }

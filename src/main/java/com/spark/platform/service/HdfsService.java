@@ -2,6 +2,8 @@ package com.spark.platform.service;
 
 import com.spark.platform.model.Info;
 import com.spark.platform.util.HdfsUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,12 +14,19 @@ import java.io.InputStream;
 @Service
 public class HdfsService {
 
-    public Info ownList() {
-        return new Info("0","",null);
-    }
+    private static Logger LOGGER = LoggerFactory.getLogger(HdfsService.class);
 
     public Info put(MultipartFile file) {
-        HdfsUtil.put("/user/spark/pro/submitFile/"+file.getOriginalFilename(),file);
-        return new Info("0","Success",null);
+        try {
+            HdfsUtil.put("/user/spark/pro/submitFile/" + file.getOriginalFilename(), file);
+        } catch (IOException e) {
+            LOGGER.warn("", e);
+            return new Info("0", "upload error", null);
+        }
+        return new Info("0", "Success", null);
+    }
+
+    public Info getSubmitFiles() {
+        return new Info("0", "Success", HdfsUtil.getFiles("/user/spark/pro/submitFile/"));
     }
 }

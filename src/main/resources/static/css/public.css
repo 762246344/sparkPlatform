@@ -1,0 +1,436 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+ul, ol, li {
+    list-style: outside none none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #333;
+}
+
+a, a:link {
+    text-decoration: none;
+    color: #333;
+}
+
+a:focus {
+    outline: none;
+}
+
+.hover {
+    color: #4bb233;
+}
+
+.hover:hover {
+    color: #4bb233;
+}
+
+a:visited {
+    color: #333;
+}
+
+input {
+    resize: none;
+    outline: none;
+    font-family: "Microsoft YaHei", "微软雅黑";
+}
+
+button {
+    font-family: "Microsoft YaHei", "微软雅黑";
+}
+
+.clearfix {
+    clear: both;
+    overflow: auto;
+    zoom: 1;
+}
+
+.form-control {
+    display: inline;
+}
+
+body {
+    background-color: #FFFFFF;
+    font-family: "Microsoft YaHei", "微软雅黑";
+    font-size: 12px;
+    color: #333;
+}
+
+.carousel-indicators {
+    bottom: 20px;
+    text-align: center;
+}
+
+.carousel-indicators li.active {
+    width: 10px;
+    height: 10px;
+    margin: 0 3px;
+}
+
+.carousel-indicators li {
+    background-color: rgba(255, 255, 255, .4);
+    border: none;
+    width: 8px;
+    height: 8px;
+    margin: 0 3px;
+}
+
+.header-wrap {
+    width: 100%;
+    background: #fff;
+    height: 90px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+
+/*.hover
+{
+	border-bottom:3px solid #a550c0;
+}*/
+
+.server-pop {
+    display: none;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(204, 204, 204, 0.4);
+}
+
+.server-pop .server-pop-body {
+    height: 700px;
+    width: 746px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -373px;
+    margin-left: -367px;
+    border-radius: 10px;
+}
+
+.server-pop .server-pop-big {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin-top: 0;
+    margin-left: 0;
+}
+
+.server-pop .server-pop-body .chat-room-tit {
+    height: 38px;
+    margin-bottom: 20px;
+    line-height: 20px;
+}
+
+.server-pop .server-pop-body .chat-room-tit h3 {
+    color: #a550c0;
+    padding: 0 0 0 25px;
+    font-weight: normal;
+    float: left;
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+.server-pop .server-pop-body .chat-room-tit ul {
+    float: right;
+}
+
+.server-pop .server-pop-body .chat-room-tit ul li {
+    float: left;
+    padding: 7px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.server-pop .server-pop-body .chat-room-tit ul li.chat-big {
+    border-right: none;
+    border-left: none;
+}
+
+.server-pop .server-pop-body .chat-room-tit ul li.chat-close {
+    border-right: none;
+    border-top-right-radius: 10px;
+}
+
+.server-pop .server-pop-body .chat-room-mess {
+    height: 500px;
+    overflow: auto;
+    border-bottom: 1px solid #ccc;
+    padding: 33px 0;
+    height: 480px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.server-pop .server-pop-body .chat-room-mess .mass-div {
+    height: auto;
+    overflow: auto;
+    margin-bottom: 25px;
+    padding: 0 20px;
+    width: 100%;
+    z-index: 1;
+    position: relative;
+}
+
+.server-pop .server-pop-body .chat-room-mess .mass-div img {
+    float: left;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    margin: 0 35px 0 0;
+}
+
+.server-pop .server-pop-body .chat-room-mess .mass-div figcaption {
+    float: left;
+    max-width: 400px;
+    overflow: auto;
+    font-size: 14px;
+    line-height: 25px;
+    border-radius: 5px;
+    padding: 10px 12px;
+    background: #ddd;
+    margin-top: 5px;
+}
+
+.server-pop .server-pop-body .chat-room-mess .mass-div figcaption:after,
+.server-pop .server-pop-body .chat-room-mess .mass-div figcaption:before {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.server-pop .server-pop-body .chat-room-mess .mass-div figcaption:before {
+    left: 82px;
+    top: 13px;
+    border: 9px solid;
+    border-color: #ddd #ddd transparent transparent;
+}
+
+.server-pop .server-pop-body .chat-room-mess .u-send {
+    position: relative;
+}
+
+.server-pop .server-pop-body .chat-room-mess .u-send img {
+    float: right;
+    margin: 0 0 0 35px;
+}
+
+.server-pop .server-pop-body .chat-room-mess .u-send figcaption {
+    float: right;
+    background: #b1ece5;
+}
+
+.server-pop .server-pop-body .chat-room-mess .u-send figcaption:after,
+.server-pop .server-pop-body .chat-room-mess .u-send figcaption:before {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.server-pop .server-pop-body .chat-room-mess .u-send figcaption:before {
+    border: none;
+    border-color: transparent;
+}
+
+.server-pop .server-pop-body .chat-room-mess .u-send figcaption:after {
+    right: 82px;
+    top: 13px;
+    border: 9px solid;
+    border-color: #b1ece5 transparent transparent #b1ece5;
+}
+
+#box-talk::-webkit-scrollbar {
+    width: 8px;
+}
+
+#box-talk::-webkit-scrollbar {
+    border-radius: 10px;
+    background-color: rgba(221, 221, 221, 0.5);
+}
+
+#box-talk::-webkit-scrollbar {
+    border-radius: 10px;
+    background-color: rgba(165, 80, 192, 0.1);
+}
+
+.server-pop .server-pop-body::-webkit-scrollbar {
+    border-radius: 10px;
+    background-color: rgba(221, 221, 221, 0.5);
+}
+
+.server-pop::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(177, 236, 229, 0.5);
+}
+
+.server-pop .server-pop-body .send-mess {
+    height: 145px;
+    width: 100%;
+    position: relative;
+}
+
+.server-pop .server-pop-body .send-mess textarea {
+    width: 100%;
+    padding: 10px 15px;
+    height: 88px;
+    color: #666;
+    outline: none;
+    resize: none;
+    border: none;
+    font-family: "微软雅黑";
+}
+
+.server-pop .server-pop-body .send-mess .click-btn-quick {
+    position: absolute;
+    width: 80px;
+    height: 30px;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 6px;
+    right: 20px;
+    bottom: 0;
+    border: none;
+    background: #a550c0 url(../img/chat-send-btn-arrow.png) no-repeat 55px 8px;
+}
+
+.server-pop .server-pop-body .send-mess .click-btn-quick button {
+    background: #a550c0;
+    border: none;
+    color: #fff;
+}
+
+.server-pop .server-pop-body .send-mess .face-div {
+    position: absolute;
+    right: 120px;
+    bottom: 0;
+}
+
+.server-pop .server-pop-body .send-quick {
+    width: 250px;
+    height: 45px;
+    line-height: 45px;
+    color: #333;
+    font-size: 14px;
+    background-color: rgba(204, 204, 204, 0.6);
+    border-radius: 10px;
+    margin-top: 24px;
+    text-align: center;
+    float: right;
+    position: relative;
+}
+
+.server-pop .server-pop-body .send-quick:after,
+.server-pop .server-pop-body .send-quick:before {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.server-pop .server-pop-body .send-quick:before {
+    left: 190px;
+    top: -26px;
+    border: 13px solid;
+    border-color: transparent #ddd #ddd transparent;
+    border-top-color: transparent;
+    border-right-color: rgba(204, 204, 204, 0.6);
+    border-bottom-color: rgba(204, 204, 204, 0.6);
+    border-left-color: transparent;
+}
+
+.footer .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px 0 0;
+}
+
+.footer .footer-inner .footer-left {
+    float: left;
+    width: 365px;
+}
+
+.footer .footer-inner .footer-center {
+    float: left;
+    width: 345px;
+}
+
+.footer .footer-inner .footer-right {
+    float: right;
+    width: auto;
+    text-align: center;
+}
+
+.footer .footer-inner .footer-right img, .footer .footer-inner .footer-wx-code img {
+    margin-bottom: 20px;
+    width: 90px;
+    margin: 0 auto 23px auto;
+}
+
+.footer .footer-inner .footer-wx-code {
+    float: left;
+    width: 90px;
+    text-align: center;
+}
+
+.footer .footer-inner .copyright {
+    margin-top: 30px;
+}
+
+.footer .footer-inner a {
+    padding-bottom: 30px;
+
+}
+
+@media screen and (max-width: 1100px) {
+
+    .header .search-btn {
+        margin: 24px 20px 0 0;
+    }
+
+    .header .search-form {
+        width: 320px;
+        margin: 0 20px 0 0;
+    }
+
+    .header .search-form input {
+        width: 320px;
+    }
+
+    .footer .footer-inner .footer-left {
+        float: left;
+        width: 300px;
+        margin-left: 20px;
+    }
+
+    .footer .footer-inner .footer-center {
+        float: left;
+        width: 300px;
+    }
+
+    .footer .footer-inner .copyright {
+        margin: 30px 0 0 20px;
+    }
+
+}

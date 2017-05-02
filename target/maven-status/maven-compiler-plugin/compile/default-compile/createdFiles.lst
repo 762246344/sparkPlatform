@@ -1,6 +1,7 @@
 com\spark\platform\controller\SqlController.class
 com\spark\platform\service\SqlService.class
 com\spark\platform\livymodel\Exec.class
+com\spark\platform\aspect\ServiceAspect.class
 com\spark\platform\conf\MyBatisMapperScannerConfig.class
 com\spark\platform\livymodel\Statement.class
 com\spark\platform\conf\WebMvcConfig.class

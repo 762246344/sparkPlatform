@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Spark</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="css/spark.css"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="header">
+        <div class="logo">
+            <a href="#" target="_self">
+                <img src="img/spark-logo.png"/>
+            </a>
+        </div>
+        <ul>
+            <li>
+                <a href="javascript:;" class="active" onclick="sql_select()">Spark-SQL</a>
+                <a href="javascript:;" onclick="web_shell()">Spark-Shell</a>
+                <a href="javascript:;" onclick="mission_submit()">Spark-Job</a>
+            </li>
+            <!--<li><a href="#web-shell">Web-Shell</a></li>-->
+            <!--<li><a href="#mission-submit">任务提交</a></li>-->
+        </ul>
+        <div class="search-btn" style="display: none;"></div>
+        <div class="search-form" role="search" style="display: none;">
+            <form>
+                <input type="text" class="form-control form-contro-input" placeholder="请输入要搜索的内容"/>
+                <button type="submit" class="btn submit-btn">搜索</button>
+            </form>
+        </div>
+    </div>
+    <div class="content">
+        <div class="content-center">
+            <div class="content-left">
+                <div class="panel-title">TABLE MENU</div>
+                <ul class="scrollbar">
+                    <li>book-menu</li>
+                    <li>user-table</li>
+                    <li>manager-table</li>
+                    <li>house-table</li>
+                    <li>book-menu</li>
+                    <li>user-table</li>
+                    <li>manager-table</li>
+                    <li>house-table</li>
+                    <li>book-menu</li>
+                    <li>user-table</li>
+                    <li>manager-table</li>
+                    <li>house-table</li>
+                    <li>book-menu</li>
+                    <li>user-table</li>
+                    <li>manager-table</li>
+                    <li>house-table</li>
+                    <li>manager-table</li>
+                    <li>house-table</li>
+                    <li>book-menu</li>
+                    <li>user-table</li>
+                    <li>manager-table</li>
+                    <li>house-table</li>
+                    <li>book-menu</li>
+                    <li>user-table</li>
+                    <li>manager-table</li>
+                    <li>house-table</li>
+                </ul>
+            </div>
+            <div class="content-left1 inactive">
+                <div class="panel-title">执行文件</div>
+                <div class="upload">
+                    <form id="upload" action="http://platform.spark.com:8080/hdfs/upload" method="post" enctype="multipart/form-data">
+                    <input type='text' name='textfield' id='textfield' class='txt' placeholder="请选择上传文件"/>
+                    <input type='button' class='btn' value='浏览文件'onclick="fileField.click()" />
+                    <input type="file" name="fileField" class="file" id="fileField" size="28" onchange="document.getElementById('textfield').value=this.value" />
+                    <input type="submit" name="submit" class="btn" value="上传" />
+                    </form>
+                </div>
+                <ul class="scrollbar">
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                    <li>spark-examples_2.11-2.1.0.jar</li>
+                </ul>
+            </div>
+            <div class="content-right">
+                <div id="sql_select" class="sql_select" >
+                    <div class="panel">
+                        <div class="title">SQL查询</div>
+                        <div class="panel-top">
+                            <div class="panel-title"><p>请输入SQL语句：</p></div>
+                            <textarea class="scrollbar" id="code_text1"></textarea>
+                        </div>
+                        <div class="panel-middle">
+                            <button type="button" class="btn btn-success" onclick="exec1()">执行SQL</button>
+                            <button type="button" class="btn btn-info" onclick="clear1()">clear</button>
+                            <button type="button" class="btn btn-warning">保存SQL</button>
+                        </div>
+                        <!--<button class="img-circle"></button>-->
+                        <div class="panel-bottom">
+                            <div class="panel-title"><p>执行结果：</p></div>
+                            <textarea class="scrollbar" id="res1"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="web_shell" class="web_shell">
+                    <div class="panel">
+                        <div class="title">Web-Shell</div>
+                        <div class="panel-top">
+                            <div class="panel-title">
+                                <p>My Snippet：</p>
+                                <div class="dropdown">
+                                    <span>语言：</span>
+                                    <select id="lan">
+                                        <span class="caret"></span>
+                                        <option>Scala</option>
+                                        <option>Python</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <textarea class="scrollbar" id="code_text"></textarea>
+                        </div>
+                        <div class="panel-middle">
+                            <button type="button" class="btn btn-success" onclick="exec2()">执行代码</button>
+                            <button type="button" class="btn btn-info" onclick="clear1()">清空</button>
+                            <button type="button" class="btn btn-warning">保存代码</button>
+                            <a href="#" type="button" class="btn btn-primary" id="Log" onclick="jump_log()">日志</a>
+                            <a href="#" type="button" class="btn btn-primary" id="WebUI" onclick="jump_webUI()">WebUI</a>
+                        </div>
+                        <!--<button class="img-circle"></button>-->
+                        <div class="panel-bottom">
+                            <div class="panel-title"><p>执行结果：</p></div>
+                            <textarea id="res" class="scrollbar"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-right1 scrollbar inactive">
+                <div id="mission_submit" class="mission_submit">
+                    <div class="panel">
+                        <div class="title">任务提交</div>
+                        <div class="control"><button class="btn btn-success" onclick="show1(this)">配置任务</button></div>
+                        <div class="pro inactive">
+                            <div>
+                            <p>类型：</p><select onchange="sel(this.value)">
+                                    <span class="caret"></span>
+                                    <option>Java</option>
+                                    <option>Scala</option>
+                                    <option>Python</option>
+                                </select>
+                            </div>
+                            <div>
+                                <p>任务名称：</p><input type="text">
+                            </div>
+                            <div>
+                                <p>执行文件：</p><select><span class="caret"></span></select>
+                            </div>
+                            <div>
+                                <p>参数：</p><input type="text">
+                            </div>
+                            <div class="lei">
+                                <p>类名：</p><input type="text">
+                            </div>
+                        </div>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <td>任务名称</td>
+                                <td>开始时间</td>
+                                <td>结束时间</td>
+                                <td>类型</td>
+                                <td>状态</td>
+                                <td>详情</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr> <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr> <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr> <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<!--<script src="js/public.js" type="text/javascript" charset="utf-8"></script>-->
+<script src="js/spark.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

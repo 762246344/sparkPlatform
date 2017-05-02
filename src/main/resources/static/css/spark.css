@@ -1,0 +1,347 @@
+.container-fluid{
+   padding:20px 0 0 0;
+}
+/*header*/
+.header {
+    width: 1200px;
+    height: 90px;
+    line-height: 90px;
+    border-bottom: none;
+    background: #fff;
+    margin: 0 auto;
+}
+
+.header .logo {
+    float: left;
+    margin: 0px 20px 0 5px;
+}
+
+.header ul {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+/*.header ul li {*/
+    /*height: 90px;*/
+    /*width: 120px;*/
+    /*float: left;*/
+    /*text-align: center;*/
+    /*margin: 0 10px 0 15px;*/
+    /*padding: 0 2px;*/
+    /*z-index: 1;*/
+    /*cursor: pointer;*/
+/*}*/
+
+.header ul li a {
+    height: 90px;
+    width: 150px;
+    float: left;
+    text-align: center;
+    margin: 25px 10px 0 45px;
+    padding: 0 2px;
+    z-index: 1;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+}
+
+.header ul li a:hover {
+    color: purple;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.header ul li .active {
+    color: purple;
+    font-size: 25px;
+    font-weight: bold;
+}
+.header .search-btn {
+    float: right;
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    /*background: #1fc8b5 url(../img/search-before.png) 10px 10px no-repeat;*/
+    cursor: pointer;
+    margin: 24px 140px 0 0;
+}
+
+.header .search-form {
+    float: right;
+    position: relative;
+    margin: 0 140px 0 0;
+    width: 420px;
+    display: none;
+}
+
+.header .search-form input {
+    border: 1px solid #1fc8b5;
+    border-radius: 30px;
+    width: 420px;
+    height: 42px;
+    line-height: 42px;
+    padding-left: 10px;
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+
+.header .search-form .submit-btn {
+    position: absolute;
+    right: 0;
+    top: 24px;
+    height: 42px;
+    width: 65px;
+    background: #1fc8b5;
+    border-radius: 0 20px 20px 0;
+    font-size: 18px;
+    color: #fff;
+    border: none;
+    font-family: "微软雅黑";
+}
+/*header*/
+
+/*content*/
+.content {
+    width: 85%;
+    height: 900px;
+    margin: 30px auto;
+}
+
+.content .content-center {
+    width: 95%;
+    height: 800px;
+    margin: 0 auto;
+}
+
+.content .content-left {
+    /*display: block;*/
+    /*display:none;*/
+    width: 18%;
+    height: 740px;
+    float: left;
+    border: 1px solid #ccc;
+    border-radius: 10px 0 0 10px;
+    margin-top: 25px;
+}
+.content .content-left1{
+    /*display:none;*/
+    width: 25%;
+    height: 740px;
+    float: left;
+    border: 1px solid #ccc;
+    border-radius: 10px 0 0 10px;
+    margin-top: 25px;
+}
+.content .content-left .panel-title,.content .content-left1 .panel-title {
+    font-size: 18px;
+    text-align: center;
+    padding: 15px 0;
+    border-bottom: 1px dashed #a550c0;
+}
+
+.content .content-left ul,.content .content-left1 ul{
+    text-align: center;
+    border-bottom: none;
+    height: 670px;
+    overflow: auto;
+}
+.content .content-left1 ul{
+    height: 550px;
+}
+.content .content-left .scrollbar::-webkit-scrollbar,.content .content-left1 .scrollbar::-webkit-scrollbar {
+    width: 2px;
+}
+
+.content .content-left ul li,.content .content-left1 ul li {
+    text-align: left;
+    display: inline-block;
+    font-size: 16px;
+    padding: 8px 15px;
+}
+.content .content-left1 input[type="file"]{
+    display: inline-block;
+    font-size: 14px;
+    padding:5px 10px;
+    margin:5px 10px;
+    width:190px;
+    /*border: 1px solid #ccc;*/
+}
+.content .content-left1 .upload{
+    position:relative;
+    padding:20px 0 10px 6%;
+    border-bottom:1px #ccc dashed;
+
+}
+.txt{
+    border:1px solid #cdcdcd;
+    width:95%;
+    height:35px;
+    font-size: 15px;
+    padding:0 8px;
+}
+.btn{
+    background-color:#11CC11;
+    border:1px solid #CDCDCD;
+    width:40%;
+    margin:10px 3%;
+}
+.file{ position:absolute;
+    top:0;
+    right:80px;
+    filter:alpha(opacity:0);
+    opacity: 0;
+    width:40%;
+}
+
+.content .content-left1 .upload button{
+    width:80%;
+    text-align: center;
+    margin:0 10%;
+}
+    /*right*/
+.content .content-right {
+    /*display:none;*/
+    width: 80%;
+    height: 740px;
+    float: right;
+    border: 1px solid #ccc;
+    margin-top: 25px;
+    overflow: hidden;
+}
+
+/*.content .content-right .active {*/
+    /*text-align: center;*/
+    /*display: block;*/
+/*}*/
+.content .inactive{
+    /*text-align: center;*/
+    display: none;
+}
+.content .content-right .title ,.content .content-right1 .title{
+    font-size: 18px;
+    color: #a550c0;
+    padding: 20px;
+    text-align: center;
+}
+
+.content .content-right .panel .panel-top {
+    text-align: center;
+    padding:10px 0 20px 0;/*border-bottom: dashed 1px #ccc;*/
+}
+
+.content .content-right .panel .panel-middle {
+    /*border-bottom: dashed 1px #ccc;*/
+    /*text-align: center;*/
+    padding: 20px 0;
+    text-align: left;
+    margin-left: 10%;
+}
+.content .content-right .panel .panel-middle1 {
+    text-align: center;
+    margin:10px 0 20px 0;
+}
+.content .content-right .panel .panel-bottom{
+    text-align: center;
+}
+
+.content .content-right .panel .panel-title{
+    font-size: 14px;
+    text-align: left;
+    margin-left: 8%;
+}
+.content .content-right .panel .panel-title p{
+    display:inline-block;
+}
+.content .content-right .panel .panel-title .dropdown{
+    display:inline-block;
+    float:right;
+    margin:0 100px 10px 0;
+}
+.content .content-right .panel .panel-title .dropdown span{
+    padding:0 5px;
+}
+
+
+.content .content-right .panel textarea {
+    height: 160px;
+    width: 85%;
+    overflow: auto;
+}
+
+.content .content-right .panel .panel-bottom textarea {
+    height: 300px;
+}
+
+.content .content-right .panel button {
+    width: 80px;
+    /*vertical-align:top;*/
+    /*margin-top: 25px;*/
+    /*background-image: url(../img/go1.png);*/
+}
+
+.content .content-right .panel a{
+    width: 80px;
+    float:right;
+    margin-right:100px;
+}
+.content .content-right1 {
+    /*display: block;*/
+    width: 73%;
+    height: 740px;
+    float: right;
+    border: 1px solid #ccc;
+    margin-top: 25px;
+    overflow: hidden;
+}
+.content .content-right1 {
+    padding:0 10px;
+    overflow: auto;
+}
+.content .content-right1 table{
+    /*width:75%;*/
+    border:1px #ccc solid;
+    height:300px;
+
+}
+.content .content-right1 table td{
+    text-align: center;
+    /*padding:15px 20px;*/
+}
+.content .content-right1 .pro{
+    /*display:none;*/
+    padding:10px;
+    /*border:1px #ccc solid;*/
+}
+.content .content-right1 .pro p{
+    width:100px;
+    display:inline-block;
+    padding:3px 5px;
+    text-align: right;
+}
+.content .content-right1 .pro select{
+    width:25%;
+    margin-bottom:5px;
+}
+.content .content-right1 .pro input[type="text"]{
+    width:25%;
+    margin-bottom:5px;
+}
+    /*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
+.content .content-right .scrollbar::-webkit-scrollbar {
+    width: 3px;
+}
+
+/*定义滚动条的轨道，内阴影及圆角*/
+.scrollbar::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    border-radius: 10px;
+}
+
+/*定义滑块，内阴影及圆角*/
+.scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #a550c0;
+}
+/*content*/

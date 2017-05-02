@@ -2,10 +2,11 @@ package com.spark.platform.service;
 
 import com.spark.platform.livymodel.AppInfo;
 import com.spark.platform.livymodel.Batch;
-import com.spark.platform.livymodel.BatchReq;
 import com.spark.platform.livymodel.Exec;
 import com.spark.platform.model.Info;
 import com.spark.platform.util.LivyUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +15,22 @@ import java.util.Map;
 
 @Service
 public class LivyService {
+    private static Logger LOGGER = LoggerFactory.getLogger(LivyService.class);
 
     @Autowired
     private LivyUtil livyUtil;
 
     public Info batch(Map<String, Object> batchReq) {
-        String errNo = "0";
-        String errMsg = "Success";
-        Batch batch = livyUtil.createBatch(batchReq);
-        return new Info(errNo, errMsg, batch);
+        if (batchReq == null ||
+                batchReq.size() == 0) {
+            return new Info("1", "args is not null", null);
+        }
+        try {
+            Batch batch = livyUtil.createBatch(batchReq);
+        } catch (Exception e) {
+            LOGGER.error("", e);
+        }
+        return new Info("0", "Success", null);
     }
 
     public Info exec(Exec exec) {

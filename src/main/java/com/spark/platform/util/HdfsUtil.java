@@ -6,6 +6,8 @@ import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.permission.AclEntry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
@@ -13,48 +15,66 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by zhouqi on 2017/1/3.
  */
 public class HdfsUtil {
+
+    private static Logger LOGGER = LoggerFactory.getLogger(HdfsUtil.class);
+
     public static Configuration conf;
     public static FileSystem fs;
+
     static {
         conf = new Configuration();
-        conf.set("fs.hdfs.impl","org.apache.hadoop.hdfs.DistributedFileSystem");
+        conf.set("fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem");
         try {
             fs = FileSystem.get(URI.create("hdfs://master:9000"), conf);
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
+
     public FileStatus getFile(String path) throws IOException {
         return fs.getFileStatus(new Path(path));
     }
 
-    public boolean delete(String path,boolean recursive) throws IOException{
-        return fs.delete(new Path(path),recursive);
+    public static List<Map<String, String>> getFiles(String path) {
+        List<Map<String, String>> fileList = new ArrayList<Map<String, String>>();
+        FileStatus[] fileStatuses = new FileStatus[0];
+        try {
+            fileStatuses = fs.listStatus(new Path(path));
+        } catch (IOException e) {
+            LOGGER.warn("", e);
+        }
+        for (FileStatus fileStatus : fileStatuses) {
+            if (fileStatus.isFile()) {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("fileName", fileStatus.getPath().getName());
+                map.put("filePath", fileStatus.getPath().toString());
+                fileList.add(map);
+            }
+        }
+        return fileList;
     }
 
-    public  static void put(String hdfsPath, MultipartFile file) {
-        Configuration conf = new Configuration();
-        try {
-            InputStream inputStream = file.getInputStream();
-            FSDataOutputStream outStream = fs.create(new Path(hdfsPath));
-            byte buffer[] = new byte[1024];
-            int length = 0;
-            while ((length = inputStream.read(buffer)) > 0) {
-                outStream.write(buffer, 0, length);
-            }
-            inputStream.close();
-            outStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+    public boolean delete(String path, boolean recursive) throws IOException {
+        return fs.delete(new Path(path), recursive);
+    }
+
+    public static void put(String hdfsPath, MultipartFile file) throws IOException {
+        LOGGER.info("正在上传... {}", hdfsPath);
+        InputStream inputStream = file.getInputStream();
+        FSDataOutputStream outStream = fs.create(new Path(hdfsPath));
+        byte buffer[] = new byte[1024];
+        int length = 0;
+        while ((length = inputStream.read(buffer)) > 0) {
+            outStream.write(buffer, 0, length);
         }
+        inputStream.close();
+        outStream.close();
     }
 
     public static void printDir(Path path)
@@ -101,12 +121,12 @@ public class HdfsUtil {
         return list;
     }
 
-    public static boolean setAcl(Path path , List<AclEntry> aclSpec){
-        try{
+    public static boolean setAcl(Path path, List<AclEntry> aclSpec) {
+        try {
             for (Path path1 : getRePath(path)) {
-                fs.setAcl(path1,aclSpec);
+                fs.setAcl(path1, aclSpec);
             }
-        }catch (IOException e){
+        } catch (IOException e) {
 
         }
         return true;
