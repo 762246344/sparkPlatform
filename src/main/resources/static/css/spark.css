@@ -152,7 +152,6 @@
 .content .content-left .scrollbar::-webkit-scrollbar,.content .content-left1 .scrollbar::-webkit-scrollbar {
     width: 2px;
 }
-
 .content .content-left ul li,.content .content-left1 ul li {
     text-align: center;
     display: inline-block;
