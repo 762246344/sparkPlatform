@@ -22,17 +22,6 @@
     padding: 0;
 }
 
-/*.header ul li {*/
-    /*height: 90px;*/
-    /*width: 120px;*/
-    /*float: left;*/
-    /*text-align: center;*/
-    /*margin: 0 10px 0 15px;*/
-    /*padding: 0 2px;*/
-    /*z-index: 1;*/
-    /*cursor: pointer;*/
-/*}*/
-
 .header ul li a {
     height: 90px;
     width: 150px;
@@ -121,7 +110,7 @@
     height: 740px;
     float: left;
     border: 1px solid #ccc;
-    border-radius: 10px 0 0 10px;
+    border-radius: 7px 0 0 7px;
     margin-top: 25px;
 }
 .content .content-left1{
@@ -130,7 +119,7 @@
     height: 740px;
     float: left;
     border: 1px solid #ccc;
-    border-radius: 10px 0 0 10px;
+    border-radius: 7px 0 0 7px;
     margin-top: 25px;
 }
 .content .content-left .panel-title,.content .content-left1 .panel-title {
@@ -149,9 +138,6 @@
 .content .content-left1 ul{
     height: 550px;
 }
-.content .content-left .scrollbar::-webkit-scrollbar,.content .content-left1 .scrollbar::-webkit-scrollbar {
-    width: 2px;
-}
 .content .content-left ul li,.content .content-left1 ul li {
     text-align: center;
     display: inline-block;
@@ -163,7 +149,8 @@
     text-align: left;
 }
 .content .content-left1 ul li span{
-    width:10%;
+    width:8%;
+    padding:6px;
     text-align: center;
     float:right;
 }
@@ -189,7 +176,7 @@
     padding:0 8px;
 }
 .btn{
-    background-color:#11CC11;
+    /*background-color:#11CC11;*/
     border:1px solid #CDCDCD;
     width:40%;
     margin:10px 3%;
@@ -212,18 +199,15 @@
     /*display:none;*/
     width: 80%;
     height: 740px;
+    text-align: center;
     float: right;
     border: 1px solid #ccc;
+    border-radius: 0 7px 7px 0;
     margin-top: 25px;
     overflow: hidden;
 }
 
-/*.content .content-right .active {*/
-    /*text-align: center;*/
-    /*display: block;*/
-/*}*/
 .content .inactive{
-    /*text-align: center;*/
     display: none;
 }
 .content .content-right .title ,.content .content-right1 .title{
@@ -244,10 +228,6 @@
     padding: 20px 0;
     text-align: left;
     margin-left: 10%;
-}
-.content .content-right .panel .panel-middle1 {
-    text-align: center;
-    margin:10px 0 20px 0;
 }
 .content .content-right .panel .panel-bottom{
     text-align: center;
@@ -277,15 +257,15 @@
     overflow: auto;
 }
 
-.content .content-right .panel .panel-bottom textarea {
+.content .content-right .panel .panel-bottom .result_sql {
     height: 300px;
+    width:100%;
+    overflow: auto;
+    padding:0 7%;
 }
 
 .content .content-right .panel button {
     width: 80px;
-    /*vertical-align:top;*/
-    /*margin-top: 25px;*/
-    /*background-image: url(../img/go1.png);*/
 }
 
 .content .content-right .panel a{
@@ -299,27 +279,27 @@
     height: 740px;
     float: right;
     border: 1px solid #ccc;
+    border-radius: 0 7px 7px 0;
     margin-top: 25px;
+    padding: 10px;
     overflow: hidden;
 }
-.content .content-right1 {
-    padding:0 10px;
+.content .content-right1 .panel .result_mission {
+    height: 600px;
+    width:100%;
     overflow: auto;
+    padding:0 2%;
 }
 .content .content-right1 table{
     /*width:75%;*/
     border:1px #ccc solid;
     height:300px;
-
 }
 .content .content-right1 table td{
     text-align: center;
-    /*padding:15px 20px;*/
 }
 .content .content-right1 .pro{
-    /*display:none;*/
     padding:10px;
-    /*border:1px #ccc solid;*/
 }
 .content .content-right1 .pro p{
     width:100px;
@@ -336,10 +316,9 @@
     margin-bottom:5px;
 }
     /*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
-.content .content-right .scrollbar::-webkit-scrollbar {
+.scrollbar::-webkit-scrollbar {
     width: 3px;
 }
-
 /*定义滚动条的轨道，内阴影及圆角*/
 .scrollbar::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);

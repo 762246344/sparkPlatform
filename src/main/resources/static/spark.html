@@ -52,16 +52,16 @@
                     <form id="upload" action="http://platform.spark.com:8080/hdfs/upload" method="post"
                           enctype="multipart/form-data">
                         <input type='text' name='textfield' id='textfield' class='txt' placeholder="请选择上传文件"/>
-                        <input type='button' class='btn' value='浏览文件' onclick="fileField.click()"/>
+                        <input type='button' class='btn btn-default' value='浏览文件' onclick="fileField.click()"/>
                         <input type="file" name="fileField" class="file" id="fileField" size="28"
                                onchange="document.getElementById('textfield').value=this.value"/>
-                        <input type="submit" name="submit" class="btn" value="上传"/>
+                        <input type="submit" name="submit" class="btn btn-default" value="上传"/>
                     </form>
                 </div>
                 <ul class="scrollbar">
                     <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-example.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark.jar<span><img src="img/delete.png"></span></li>
                     <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
                     <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
                     <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
@@ -82,7 +82,7 @@
             <div class="content-right">
                 <div id="sql_select" class="sql_select">
                     <div class="panel">
-                        <div class="title">SQL查询</div>
+                        <div class="title">Spark-SQL</div>
                         <div class="panel-top">
                             <div class="panel-title"><p>请输入SQL语句：</p></div>
                             <textarea class="scrollbar" id="code_text_sql"></textarea>
@@ -95,14 +95,96 @@
                         <!--<button class="img-circle"></button>-->
                         <div class="panel-bottom">
                             <div class="panel-title"><p>执行结果：</p></div>
-                            <textarea class="scrollbar" id="res_sql"></textarea>
+                            <div class="result_sql scrollbar" id="res_sql">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>属性</td>
+                                            <td>类型</td>
+                                            <td>名字</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>col_name</td>
+                                            <td>data_type</td>
+                                            <td>comment</td>
+                                        </tr>
+                                        <tr>
+                                            <td>id</td>
+                                            <td>int</td>
+                                            <td>编号</td>
+                                        </tr>
+                                        <tr>
+                                            <td>gender</td>
+                                            <td>string</td>
+                                            <td>性别</td>
+                                        </tr>
+                                        <tr>
+                                            <td>height</td>
+                                            <td>int</td>
+                                            <td>身高</td>
+                                        </tr>
+                                        <tr>
+                                            <td>weight</td>
+                                            <td>int</td>
+                                            <td>体重</td>
+                                        </tr>
+                                        <tr>
+                                            <td>age</td>
+                                            <td>int</td>
+                                            <td>年龄</td>
+                                        </tr>
+                                        <tr>
+                                            <td>salary</td>
+                                            <td>double</td>
+                                            <td>薪资</td>
+                                        </tr>
+                                        <tr>
+                                            <td>col_name</td>
+                                            <td>data_type</td>
+                                            <td>comment</td>
+                                        </tr>
+                                        <tr>
+                                            <td>id</td>
+                                            <td>int</td>
+                                            <td>编号</td>
+                                        </tr>
+                                        <tr>
+                                            <td>gender</td>
+                                            <td>string</td>
+                                            <td>性别</td>
+                                        </tr>
+                                        <tr>
+                                            <td>height</td>
+                                            <td>int</td>
+                                            <td>身高</td>
+                                        </tr>
+                                        <tr>
+                                            <td>weight</td>
+                                            <td>int</td>
+                                            <td>体重</td>
+                                        </tr>
+                                        <tr>
+                                            <td>age</td>
+                                            <td>int</td>
+                                            <td>年龄</td>
+                                        </tr>
+                                        <tr>
+                                            <td>salary</td>
+                                            <td>double</td>
+                                            <td>薪资</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div id="web_shell" class="web_shell">
                     <div class="panel">
-                        <div class="title">Web-Shell</div>
+                        <div class="title">Spark-Shell</div>
                         <div class="panel-top">
                             <div class="panel-title">
                                 <p>My Snippet：</p>
@@ -133,12 +215,12 @@
                     </div>
                 </div>
             </div>
-            <div class="content-right1 scrollbar inactive">
+            <div class="content-right1 inactive">
                 <div id="mission_submit" class="mission_submit">
                     <div class="panel">
-                        <div class="title">任务提交</div>
+                        <div class="title">Spark-Job</div>
                         <div class="control">
-                            <button class="btn btn-success" onclick="show1(this)">配置任务</button>
+                            <button class="btn btn-default" onclick="show1(this)">配置任务</button>
                         </div>
                         <div class="pro inactive">
                             <div>
@@ -162,188 +244,190 @@
                                 <p>类名：</p><input type="text">
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <td>任务名称</td>
-                                <td>开始时间</td>
-                                <td>结束时间</td>
-                                <td>类型</td>
-                                <td>状态</td>
-                                <td>详情</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>1</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="result_mission scrollbar">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <td>任务名称</td>
+                                    <td>开始时间</td>
+                                    <td>结束时间</td>
+                                    <td>类型</td>
+                                    <td>状态</td>
+                                    <td>详情</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
