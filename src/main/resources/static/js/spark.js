@@ -2,10 +2,12 @@
  * Created by pc on 2017/4/30.
  */
 
-    //左侧列表
-    //			$(".content-left ul li a").click(function(){
-    //				$(this).parent().children().toggleClass("active");
-    //			});
+
+get_table();
+//左侧列表
+//			$(".content-left ul li a").click(function(){
+//				$(this).parent().children().toggleClass("active");
+//			});
 $(".header ul li a").click(function () {
     $(this).addClass("active").siblings(".active").removeClass("active");
 //        $(this).addClass("disabled").siblings(".disabled").removeClass("disabled");
@@ -23,7 +25,7 @@ $('#upload').submit(function (event) {
     event.preventDefault();
     var form = $(this);
     var formData = new FormData();
-    formData.append("file",$("#fileField")[0].files[0]);
+    formData.append("file", $("#fileField")[0].files[0]);
     //普通表单
     $.ajax({
         type: form.attr('method'),
@@ -39,8 +41,8 @@ $('#upload').submit(function (event) {
         //错误信息
     });
 });
-function exec1(){
-    var exec = new Object();
+function exec1() {
+    var exec = {};
     exec.code = code_text1.value;
     exec.kind = 'spark';
     console.log(JSON.stringify(exec));
@@ -49,7 +51,7 @@ function exec1(){
         type: "POST",
         crossDomain: true,
         //dataType: "json",
-        url: "http://platform.spark.com:8080/session/exec",
+        url: sparkApiUrl + "/session/exec",
         data: JSON.stringify(exec),
         success: function (data) {
             console.log(data.data);
@@ -58,7 +60,7 @@ function exec1(){
     });
 }
 function exec2() {
-    var exec = new Object();
+    var exec = {};
     exec.code = code_text.value;
     exec.kind = 'spark';
     console.log(JSON.stringify(exec));
@@ -67,7 +69,7 @@ function exec2() {
         type: "POST",
         crossDomain: true,
         //dataType: "json",
-        url: "http://platform.spark.com:8080/session/exec",
+        url: sparkApiUrl + "/session/exec",
         data: JSON.stringify(exec),
         success: function (data) {
             console.log(data.data);
@@ -75,51 +77,70 @@ function exec2() {
         }
     });
 }
-function clear1(){
-    code_text.value="";
-    res.value="";
-    code_text1.value="";
-    res1.value="";
+function clear1() {
+    code_text.value = "";
+    res.value = "";
+    code_text1.value = "";
+    res1.value = "";
 }
-function jump_webUI(){
-   this.href="a.html";
+function jump_webUI() {
+    this.href = "a.html";
 }
-function jump_log(){
-    this.href="b.html";
+function jump_log() {
+    this.href = "b.html";
 }
-function sql_select(){
+function sql_select() {
     $(".content-left1").addClass("inactive");
     $(".content-left").removeClass("inactive");
     $(".content-right1").addClass("inactive");
     $(".content-right").removeClass("inactive");
     $(".sql_select").removeClass("inactive").siblings().addClass("inactive");
 }
-function web_shell(){
+function get_table() {
+    $.ajax({
+        type: "GET",
+        crossDomain: true,
+        url: sparkApiUrl + "/sql/allTable",
+        success: function (data) {
+            if (data.errno == "0") {
+                for (table in data.data) {
+                    var li = document.createElement("li")
+                    li.innerHTML = table;
+                    //table_ul.append(li);
+                }
+            } else {
+                alert("服务异常");
+            }
+            console.log(data.data);
+        }
+    });
+}
+function web_shell() {
     $(".content-left1").addClass("inactive");
     $(".content-left").removeClass("inactive");
     $(".content-right1").addClass("inactive");
     $(".content-right").removeClass("inactive");
     $(".web_shell").removeClass("inactive").siblings().addClass("inactive");
 }
-function mission_submit(){
+function mission_submit() {
     $(".content-left1").removeClass("inactive");
     $(".content-left").addClass("inactive");
     $(".content-right1").removeClass("inactive");
     $(".content-right").addClass("inactive");
     //$(".mission_submit").removeClass("inactive").siblings().addClass("inactive");
 }
-function show1(btn){
+function show1(btn) {
     $(".pro").slideToggle(1000);
-    if(btn.innerHTML=="收起"){
-        btn.innerHTML="配置任务";
-    }else{
-        btn.innerHTML="收起";
+    if (btn.innerHTML == "收起") {
+        btn.innerHTML = "配置任务";
+    } else {
+        btn.innerHTML = "收起";
     }
 }
-function sel(value){
-    if(value=="Python"){
+function sel(value) {
+    if (value == "Python") {
         $(".lei").addClass("inactive");
-    }else{
+    } else {
         $(".lei").removeClass("inactive");
     }
 }

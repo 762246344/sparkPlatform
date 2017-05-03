@@ -33,7 +33,7 @@ public class LivyUtil {
         return (Session) JSONObject.toBean(HttpRequestUtil.httpPost(jo.toString(), livyUri + "/sessions"), Session.class);
     }
 
-    @Scheduled(fixedRate = 1000 * 60)
+    @Scheduled(fixedRate = 2000 * 60)
     public void flushSession() {
         JSONArray ja = HttpRequestUtil.httpGet(livyUri + "/sessions").getJSONArray("sessions");
         Map<String, Session> map = new HashMap<String, Session>();
