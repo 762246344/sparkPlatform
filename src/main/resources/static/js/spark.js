@@ -2,7 +2,6 @@
  * Created by pc on 2017/4/30.
  */
 
-
 get_table();
 //左侧列表
 //			$(".content-left ul li a").click(function(){
@@ -16,8 +15,6 @@ $(".header ul li a").click(function () {
 });
 $(document).ready(function () {
     $("#sql-select").addClass("active");
-//        $("a :frist").addClass("active");
-//        $("[href='#sql-select']").addClass("disabled");
     $("[href='#sql-select']").addClass("active");
 });
 
@@ -41,6 +38,8 @@ $('#upload').submit(function (event) {
         //错误信息
     });
 });
+
+//sql 执行
 function exec1() {
     var exec = {};
     exec.code = code_text1.value;
@@ -59,6 +58,7 @@ function exec1() {
         }
     });
 }
+//web-shell  执行
 function exec2() {
     var exec = {};
     exec.code = code_text.value;
@@ -77,6 +77,7 @@ function exec2() {
         }
     });
 }
+//清空
 function clear1() {
     code_text.value = "";
     res.value = "";
@@ -96,6 +97,7 @@ function sql_select() {
     $(".content-right").removeClass("inactive");
     $(".sql_select").removeClass("inactive").siblings().addClass("inactive");
 }
+//获取列表
 function get_table() {
     $.ajax({
         type: "GET",
@@ -129,6 +131,8 @@ function mission_submit() {
     $(".content-right").addClass("inactive");
     //$(".mission_submit").removeClass("inactive").siblings().addClass("inactive");
 }
+
+//配置任务
 function show1(btn) {
     $(".pro").slideToggle(1000);
     if (btn.innerHTML == "收起") {

@@ -154,10 +154,19 @@
 }
 
 .content .content-left ul li,.content .content-left1 ul li {
-    text-align: left;
+    text-align: center;
     display: inline-block;
     font-size: 16px;
+    width:100%;
     padding: 8px 15px;
+}
+.content .content-left1 ul li{
+    text-align: left;
+}
+.content .content-left1 ul li span{
+    width:10%;
+    text-align: center;
+    float:right;
 }
 .content .content-left1 input[type="file"]{
     display: inline-block;
