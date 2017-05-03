@@ -40,26 +40,29 @@ $('#upload').submit(function (event) {
 });
 
 //sql 执行
-function exec1() {
+function exec_sql() {
     var exec = {};
-    exec.code = code_text1.value;
-    exec.kind = 'spark';
-    console.log(JSON.stringify(exec));
+    exec.sql = code_text_sql.value;
     $.ajax({
         contentType: "application/json; charset=utf-8",
         type: "POST",
         crossDomain: true,
         //dataType: "json",
-        url: sparkApiUrl + "/session/exec",
+        url: sparkApiUrl + "/sql/query",
         data: JSON.stringify(exec),
         success: function (data) {
-            console.log(data.data);
-            res1.value = data.data;
-        }
+            if (data.errno == "0") {
+                res_sql.value = data.data;
+            } else {
+                alert("执行sql语句失败：" + data.errmsg);
+            }
+        }.fail(function (jqXHR, textStatus, errorThrown) {
+            alert("执行sql语句失败!");
+        })
     });
 }
 //web-shell  执行
-function exec2() {
+function exec_shell() {
     var exec = {};
     exec.code = code_text.value;
     exec.kind = 'spark';
@@ -72,13 +75,18 @@ function exec2() {
         url: sparkApiUrl + "/session/exec",
         data: JSON.stringify(exec),
         success: function (data) {
-            console.log(data.data);
-            res.value = data.data;
-        }
+            if (data.errno == "0") {
+                res_shell.value = data.data;
+            } else {
+                alert("执行shell语句失败：" + data.errmsg);
+            }
+        }.fail(function (jqXHR, textStatus, errorThrown) {
+            alert("执行shell语句失败!");
+        })
     });
 }
 //清空
-function clear1() {
+function clear_sql() {
     code_text.value = "";
     res.value = "";
     code_text1.value = "";
@@ -105,15 +113,14 @@ function get_table() {
         url: sparkApiUrl + "/sql/allTable",
         success: function (data) {
             if (data.errno == "0") {
-                for (table in data.data) {
+                for (i in data.data) {
                     var li = document.createElement("li")
-                    li.innerHTML = table;
-                    //table_ul.append(li);
+                    li.innerHTML = data.data[i];
+                    table_ul.append(li);
                 }
             } else {
                 alert("服务异常");
             }
-            console.log(data.data);
         }
     });
 }

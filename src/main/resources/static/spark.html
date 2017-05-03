@@ -44,7 +44,6 @@
             <div class="content-left">
                 <div class="panel-title">TABLE MENU</div>
                 <ul class="scrollbar" id="table_ul">
-                    <li>book-menu</li>
                 </ul>
             </div>
             <div class="content-left1 inactive">
@@ -60,24 +59,24 @@
                     </form>
                 </div>
                 <ul class="scrollbar">
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete3.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
                 </ul>
             </div>
             <div class="content-right">
@@ -86,17 +85,17 @@
                         <div class="title">SQL查询</div>
                         <div class="panel-top">
                             <div class="panel-title"><p>请输入SQL语句：</p></div>
-                            <textarea class="scrollbar" id="code_text1"></textarea>
+                            <textarea class="scrollbar" id="code_text_sql"></textarea>
                         </div>
                         <div class="panel-middle">
-                            <button type="button" class="btn btn-success" onclick="exec1()">执行SQL</button>
-                            <button type="button" class="btn btn-info" onclick="clear1()">clear</button>
+                            <button type="button" class="btn btn-success" onclick="exec_sql()">执行SQL</button>
+                            <button type="button" class="btn btn-info" onclick="clear_sql()">clear</button>
                             <button type="button" class="btn btn-warning">保存SQL</button>
                         </div>
                         <!--<button class="img-circle"></button>-->
                         <div class="panel-bottom">
                             <div class="panel-title"><p>执行结果：</p></div>
-                            <textarea class="scrollbar" id="res1"></textarea>
+                            <textarea class="scrollbar" id="res_sql"></textarea>
                         </div>
                     </div>
                 </div>
@@ -116,11 +115,11 @@
                                     </select>
                                 </div>
                             </div>
-                            <textarea class="scrollbar" id="code_text"></textarea>
+                            <textarea class="scrollbar" id="code_text_shell"></textarea>
                         </div>
                         <div class="panel-middle">
-                            <button type="button" class="btn btn-success" onclick="exec2()">执行代码</button>
-                            <button type="button" class="btn btn-info" onclick="clear1()">清空</button>
+                            <button type="button" class="btn btn-success" onclick="exec_shell()">执行代码</button>
+                            <button type="button" class="btn btn-info" onclick="clear_sql()">清空</button>
                             <button type="button" class="btn btn-warning">保存代码</button>
                             <a href="#" type="button" class="btn btn-primary" id="Log" onclick="jump_log()">日志</a>
                             <a href="#" type="button" class="btn btn-primary" id="WebUI"
@@ -129,7 +128,7 @@
                         <!--<button class="img-circle"></button>-->
                         <div class="panel-bottom">
                             <div class="panel-title"><p>执行结果：</p></div>
-                            <textarea id="res" class="scrollbar"></textarea>
+                            <textarea id="res_shell" class="scrollbar"></textarea>
                         </div>
                     </div>
                 </div>

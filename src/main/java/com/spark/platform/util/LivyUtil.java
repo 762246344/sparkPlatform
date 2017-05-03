@@ -1,14 +1,12 @@
 package com.spark.platform.util;
 
 import com.spark.platform.livymodel.Batch;
-import com.spark.platform.livymodel.BatchReq;
 import com.spark.platform.livymodel.Exec;
 import com.spark.platform.livymodel.Session;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -33,7 +31,7 @@ public class LivyUtil {
         return (Session) JSONObject.toBean(HttpRequestUtil.httpPost(jo.toString(), livyUri + "/sessions"), Session.class);
     }
 
-    @Scheduled(fixedRate = 2000 * 60)
+    //@Scheduled(fixedRate = 2000 * 60)
     public void flushSession() {
         JSONArray ja = HttpRequestUtil.httpGet(livyUri + "/sessions").getJSONArray("sessions");
         Map<String, Session> map = new HashMap<String, Session>();
@@ -94,7 +92,7 @@ public class LivyUtil {
         return info;
     }
 
-    public Batch createBatch(Map<String,Object> batchReq) {
+    public Batch createBatch(Map<String, Object> batchReq) {
         String data = JSONObject.fromObject(batchReq).toString();
         System.out.println(data);
         return (Batch) JSONObject.toBean(HttpRequestUtil.httpPost(data, livyUri + "/batches"), Batch.class);
