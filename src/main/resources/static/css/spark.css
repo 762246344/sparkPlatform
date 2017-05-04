@@ -205,13 +205,14 @@
     border-radius: 0 7px 7px 0;
     margin-top: 25px;
     overflow: hidden;
+    font-size: 16px;
 }
 
 .content .inactive{
     display: none;
 }
 .content .content-right .title ,.content .content-right1 .title{
-    font-size: 18px;
+    font-size: 20px;
     color: #a550c0;
     padding: 20px;
     text-align: center;
@@ -219,22 +220,28 @@
 
 .content .content-right .panel .panel-top {
     text-align: center;
-    padding:10px 0 20px 0;/*border-bottom: dashed 1px #ccc;*/
+    padding-top:10px;/*border-bottom: dashed 1px #ccc;*/
 }
 
 .content .content-right .panel .panel-middle {
     /*border-bottom: dashed 1px #ccc;*/
     /*text-align: center;*/
-    padding: 20px 0;
+    padding: 10px 0;
     text-align: left;
     margin-left: 10%;
 }
 .content .content-right .panel .panel-bottom{
     text-align: center;
 }
-
+#code_text_shell{
+    height:200px;
+}
+#res_shell{
+    height:300px;
+}
 .content .content-right .panel .panel-title{
-    font-size: 14px;
+    font-size: 16px;
+    font-weight:bold;
     text-align: left;
     margin-left: 8%;
 }
@@ -258,7 +265,7 @@
 }
 
 .content .content-right .panel .panel-bottom .result_sql {
-    height: 300px;
+    height: 350px;
     width:100%;
     overflow: auto;
     padding:0 7%;
@@ -283,6 +290,7 @@
     margin-top: 25px;
     padding: 10px;
     overflow: hidden;
+    font-size: 16px;
 }
 .content .content-right1 .panel .result_mission {
     height: 600px;
@@ -332,3 +340,19 @@
     background-color: #a550c0;
 }
 /*content*/
+
+
+
+#mymenu{
+    width:100px;
+    height:100px;
+    background-color: #1fc8b5;
+}
+
+#menu_right{
+    display: none;
+    position:absolute;
+}
+
+
+

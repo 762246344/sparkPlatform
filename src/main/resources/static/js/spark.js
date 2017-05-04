@@ -116,6 +116,7 @@ function get_table() {
                 for (i in data.data) {
                     var li = document.createElement("li")
                     li.innerHTML = data.data[i];
+                    li.oncontextmenu=right_click(li.event);
                     table_ul.append(li);
                 }
             } else {
@@ -153,5 +154,15 @@ function sel(value) {
         $(".lei").addClass("inactive");
     } else {
         $(".lei").removeClass("inactive");
+    }
+}
+
+function right_click(event){
+    $("#menu_right").css("left",event.clientX);
+    $("#menu_right").css("top",event.clientY);
+    $("#menu_right").css("display","block");
+    event.returnValue=false;
+    document.onclick = function() {
+        $("#menu_right").css("display","none");
     }
 }
