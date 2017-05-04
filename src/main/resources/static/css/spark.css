@@ -343,16 +343,31 @@
 
 
 
-#mymenu{
-    width:100px;
-    height:100px;
-    background-color: #1fc8b5;
-}
 
 #menu_right{
+    width:130px;
     display: none;
     position:absolute;
+    border: 1px #ccc solid;
+    background-color: #FFFFFF;
+    box-shadow:3px 3px 8px #ccc;
 }
+#menu_right ul{
+    /*height:150px;*/
+    margin-bottom: 2px;
+}
+#menu_right ul li{
+    width:100%;
+    padding:3px 0 3px 15px;
+    background-color: #FFFFFF;
+    font-size: 13px;
+    text-align: left;
+}
+#menu_right ul li:hover{
+    background-color: #ccc;
+    cursor:default;
+}
+
 
 
 
