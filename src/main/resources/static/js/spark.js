@@ -3,6 +3,7 @@
  */
 
 get_table();
+get_files();
 //左侧列表
 //			$(".content-left ul li a").click(function(){
 //				$(this).parent().children().toggleClass("active");
@@ -32,6 +33,11 @@ $('#upload').submit(function (event) {
         contentType: false
         //enctype:"multipart/form-data"
     }).success(function () {
+        if (data.errno == "0") {
+            alert("上传成功");
+        } else {
+            alert("上传失败");
+        }
         console.log("success");
         //成功提交
     }).fail(function (jqXHR, textStatus, errorThrown) {
@@ -52,13 +58,29 @@ function exec_sql() {
         data: JSON.stringify(exec),
         success: function (data) {
             if (data.errno == "0") {
-                res_sql.value = data.data;
+                var row = "<tr>";
+                for (i in data.data[0]) {
+                    row += "<td>" + data.data[0][i] + "</td>";
+                }
+                row += "</tr>";
+                $("#res_table thead").html(row);
+                var tbody = "";
+                for (var i = 1; i < data.data.length; i++) {
+                    row = "<tr>";
+                    for (j in data.data[i]) {
+                        row += "<td>" + data.data[i][j] + "</td>";
+                    }
+                    row += "</tr>";
+                    tbody += row;
+                }
+                $("#res_table tbody").html(tbody);
             } else {
                 alert("执行sql语句失败：" + data.errmsg);
             }
-        }.fail(function (jqXHR, textStatus, errorThrown) {
-            alert("执行sql语句失败!");
-        })
+        },
+        fail: function (data) {
+            alert("服务异常");
+        }
     });
 }
 //web-shell  执行
@@ -80,9 +102,10 @@ function exec_shell() {
             } else {
                 alert("执行shell语句失败：" + data.errmsg);
             }
-        }.fail(function (jqXHR, textStatus, errorThrown) {
-            alert("执行shell语句失败!");
-        })
+        },
+        fail: function (data) {
+            alert("服务异常");
+        }
     });
 }
 //清空
@@ -114,14 +137,36 @@ function get_table() {
         success: function (data) {
             if (data.errno == "0") {
                 for (i in data.data) {
-                    var li = document.createElement("li")
-                    li.innerHTML = data.data[i];
-                    li.oncontextmenu=right_click(li.event);
-                    table_ul.append(li);
+                    var li = "<li oncontextmenu=right_click('" + data.data[i] + "')>" + data.data[i] + "</li>";
+                    $("#table_ul").append(li);
                 }
             } else {
-                alert("服务异常");
+                alert("获取表失败"+data.errmsg);
             }
+        },
+        fail: function (data) {
+            alert("服务异常");
+        }
+    });
+}
+function get_files() {
+    $.ajax({
+        type: "GET",
+        crossDomain: true,
+        url: sparkApiUrl + "/hdfs/getFile",
+        success: function (data) {
+            if (data.errno == "0") {
+                $("#exec_files").empty();
+                for (i in data.data) {
+                    var li = "<li>" + data.data[i].fileName + "<span><img src='img/delete.png'></span></li>";
+                    $("#exec_files").append(li);
+                }
+            } else {
+                alert("获取执行文件列表失败"+data.errmsg);
+            }
+        },
+        fail: function (data) {
+            alert("服务异常");
         }
     });
 }
@@ -157,12 +202,32 @@ function sel(value) {
     }
 }
 
-function right_click(event){
-    $("#menu_right").css("left",event.clientX);
-    $("#menu_right").css("top",event.clientY);
-    $("#menu_right").css("display","block");
-    event.returnValue=false;
-    document.onclick = function() {
-        $("#menu_right").css("display","none");
+function right_click(table) {
+    $("#menu_right").css("left", window.event.clientX);
+    $("#menu_right").css("top", window.event.clientY);
+    $("#menu_right").css("display", "block");
+    $("#menu_right ul li:eq(0)").click(function () {
+        $("#code_text_sql").html("desc " + table);
+        $("#exec_sql_btn").click();
+    });
+    $("#menu_right ul li:eq(1)").click(function () {
+        $("#code_text_sql").html("select count(*) from " + table);
+        $("#exec_sql_btn").click();
+    });
+    $("#menu_right ul li:eq(2)").click(function () {
+        $("#code_text_sql").html("select * from " + table + " limit 10");
+        $("#exec_sql_btn").click();
+    });
+    $("#menu_right ul li:eq(3)").click(function () {
+        $("#code_text_sql").html("select * from " + table + " limit 20");
+        $("#exec_sql_btn").click();
+    });
+    $("#menu_right ul li:eq(4)").click(function () {
+        $("#code_text_sql").html("select * from " + table + " limit 30");
+        $("#exec_sql_btn").click();
+    });
+    event.returnValue = false;
+    document.onclick = function () {
+        $("#menu_right").css("display", "none");
     }
 }

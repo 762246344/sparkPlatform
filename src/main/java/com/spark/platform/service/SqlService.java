@@ -30,7 +30,7 @@ public class SqlService {
             conn = DriverManager.getConnection(jdbcurl, username, password);
             Statement st = conn.createStatement();
             ResultSet res = null;
-            System.out.println(sql);
+            //System.out.println(sql);
             res = st.executeQuery(sql);
             List<String[]> list = new ArrayList<String[]>();
             String[] s = new String[res.getMetaData().getColumnCount()];

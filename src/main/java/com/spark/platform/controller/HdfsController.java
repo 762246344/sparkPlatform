@@ -4,6 +4,7 @@ import com.spark.platform.model.Info;
 import com.spark.platform.service.HdfsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,6 +28,11 @@ public class HdfsController {
     @RequestMapping(value = "/upload")
     public Info upload(@RequestParam(value = "file", required = false) MultipartFile file) {
         return hdfsService.put(file);
+    }
+
+    @RequestMapping(value = "/getFile", method = RequestMethod.GET)
+    public Info getFile() {
+        return hdfsService.getSubmitFiles();
     }
 
 }

@@ -32,13 +32,14 @@
         <div class="content-center">
             <div class="content-left">
                 <div class="panel-title">TABLE MENU</div>
-                <ul class="scrollbar" id="table_ul"></ul>
+                <ul class="scrollbar" id="table_ul">
+                </ul>
             </div>
 
             <div class="content-left1 inactive">
                 <div class="panel-title">执行文件</div>
                 <div class="upload">
-                    <form id="upload" action="http://platform.spark.com:8080/hdfs/upload" method="post" enctype="multipart/form-data">
+                    <form id="upload" action="http://platform.spark.com/hdfs/upload" method="post" enctype="multipart/form-data">
                         <input type='text' name='textfield' id='textfield' class='txt' placeholder="请选择上传文件"/>
                         <input type='button' class='btn btn-default' value='浏览文件' onclick="fileField.click()"/>
                         <input type="file" name="fileField" class="file" id="fileField" size="28"
@@ -46,25 +47,10 @@
                         <input type="submit" name="submit" class="btn btn-default" value="上传"/>
                     </form>
                 </div>
-                <ul class="scrollbar">
-                    <li  oncontextmenu="right_click(event);">spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
+                <ul id="exec_files" class="scrollbar">
+                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
                     <li>spark-example.jar<span><img src="img/delete.png"></span></li>
                     <li>spark.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
                 </ul>
             </div>
             <div id="menu_right">
@@ -85,92 +71,17 @@
                             <textarea class="scrollbar" id="code_text_sql"></textarea>
                         </div>
                         <div class="panel-middle">
-                            <button type="button" class="btn btn-success" onclick="exec_sql()">执行SQL</button>
+                            <button id="exec_sql_btn" type="button" class="btn btn-success" onclick="exec_sql()">执行SQL</button>
                             <button type="button" class="btn btn-info" onclick="clear_sql()">clear</button>
                             <button type="button" class="btn btn-warning">保存SQL</button>
                         </div>
                         <div class="panel-bottom">
                             <div class="panel-title"><p>执行结果：</p></div>
                             <div class="result_sql scrollbar" id="res_sql">
-                                <table class="table table-bordered table-striped">
+                                <table id="res_table" class="table table-bordered table-striped">
                                     <thead>
-                                        <tr>
-                                            <td>属性</td>
-                                            <td>类型</td>
-                                            <td>名字</td>
-                                        </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>col_name</td>
-                                            <td>data_type</td>
-                                            <td>comment</td>
-                                        </tr>
-                                        <tr>
-                                            <td>id</td>
-                                            <td>int</td>
-                                            <td>编号</td>
-                                        </tr>
-                                        <tr>
-                                            <td>gender</td>
-                                            <td>string</td>
-                                            <td>性别</td>
-                                        </tr>
-                                        <tr>
-                                            <td>height</td>
-                                            <td>int</td>
-                                            <td>身高</td>
-                                        </tr>
-                                        <tr>
-                                            <td>weight</td>
-                                            <td>int</td>
-                                            <td>体重</td>
-                                        </tr>
-                                        <tr>
-                                            <td>age</td>
-                                            <td>int</td>
-                                            <td>年龄</td>
-                                        </tr>
-                                        <tr>
-                                            <td>salary</td>
-                                            <td>double</td>
-                                            <td>薪资</td>
-                                        </tr>
-                                        <tr>
-                                            <td>col_name</td>
-                                            <td>data_type</td>
-                                            <td>comment</td>
-                                        </tr>
-                                        <tr>
-                                            <td>id</td>
-                                            <td>int</td>
-                                            <td>编号</td>
-                                        </tr>
-                                        <tr>
-                                            <td>gender</td>
-                                            <td>string</td>
-                                            <td>性别</td>
-                                        </tr>
-                                        <tr>
-                                            <td>height</td>
-                                            <td>int</td>
-                                            <td>身高</td>
-                                        </tr>
-                                        <tr>
-                                            <td>weight</td>
-                                            <td>int</td>
-                                            <td>体重</td>
-                                        </tr>
-                                        <tr>
-                                            <td>age</td>
-                                            <td>int</td>
-                                            <td>年龄</td>
-                                        </tr>
-                                        <tr>
-                                            <td>salary</td>
-                                            <td>double</td>
-                                            <td>薪资</td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -230,7 +141,9 @@
                                 <p>任务名称：</p><input type="text">
                             </div>
                             <div>
-                                <p>执行文件：</p><select><span class="caret"></span></select>
+                                <p>执行文件：</p><select>
+                                <option>spark-examples_2.11-2.1.0.jar</option>
+                                </span></select>
                             </div>
                             <div>
                                 <p>参数：</p><input type="text">
@@ -253,172 +166,12 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>1</td>
+                                    <td>spark_pi</td>
+                                    <td>2017/05/04 12:23:31</td>
+                                    <td>2017/05/04 12:25:23</td>
+                                    <td>scala</td>
+                                    <td>完成</td>
+                                    <td>详情</td>
                                 </tr>
                                 </tbody>
                             </table>
