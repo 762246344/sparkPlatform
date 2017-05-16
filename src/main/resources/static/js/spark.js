@@ -2,49 +2,14 @@
  * Created by pc on 2017/4/30.
  */
 
-get_table();
-get_files();
-//左侧列表
-//			$(".content-left ul li a").click(function(){
-//				$(this).parent().children().toggleClass("active");
-//			});
-$(".header ul li a").click(function () {
-    $(this).addClass("active").siblings(".active").removeClass("active");
-//        $(this).addClass("disabled").siblings(".disabled").removeClass("disabled");
-//        var id = $(this).attr("href");
-//        $(id).addClass("active").siblings(".active").removeClass("active");
-});
 $(document).ready(function () {
     $("#sql-select").addClass("active");
     $("[href='#sql-select']").addClass("active");
 });
-
-$('#upload').submit(function (event) {
-    event.preventDefault();
-    var form = $(this);
-    var formData = new FormData();
-    formData.append("file", $("#fileField")[0].files[0]);
-    //普通表单
-    $.ajax({
-        type: form.attr('method'),
-        url: form.attr('action'),
-        data: formData,
-        processData: false,
-        contentType: false
-        //enctype:"multipart/form-data"
-    }).success(function () {
-        if (data.errno == "0") {
-            alert("上传成功");
-        } else {
-            alert("上传失败");
-        }
-        console.log("success");
-        //成功提交
-    }).fail(function (jqXHR, textStatus, errorThrown) {
-        //错误信息
-    });
+//导航栏
+$(".header ul li a").click(function () {
+    $(this).addClass("active").siblings(".active").removeClass("active");
 });
-
 //sql 执行
 function exec_sql() {
     var exec = {};
@@ -108,19 +73,50 @@ function exec_shell() {
         }
     });
 }
+//上传文件
+$('#upload').submit(function (event) {
+    event.preventDefault();
+    var form = $(this);
+    var formData = new FormData();
+    formData.append("file", $("#fileField")[0].files[0]);
+    //普通表单
+    $.ajax({
+        type: form.attr('method'),
+        url: form.attr('action'),
+        data: formData,
+        processData: false,
+        contentType: false
+        //enctype:"multipart/form-data"
+    }).success(function () {
+        if (data.errno == "0") {
+            alert("上传成功");
+        } else {
+            alert("上传失败");
+        }
+        console.log("success");
+        //成功提交
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+        //错误信息
+    });
+});
 //清空
-function clear_sql() {
-    code_text.value = "";
-    res.value = "";
-    code_text1.value = "";
-    res1.value = "";
+function clear_txt() {
+    code_text_sql.value = "";
+    res_sql.value = "";
+    code_text_shell.value = "";
+    res_shell.value = "";
 }
+//跳转
 function jump_webUI() {
+    //todo 跳转到webUI界面
     this.href = "a.html";
 }
+//跳转
 function jump_log() {
+    //todo 跳转到log界面
     this.href = "b.html";
 }
+//导航切换
 function sql_select() {
     $(".content-left1").addClass("inactive");
     $(".content-left").removeClass("inactive");
@@ -128,7 +124,21 @@ function sql_select() {
     $(".content-right").removeClass("inactive");
     $(".sql_select").removeClass("inactive").siblings().addClass("inactive");
 }
+function web_shell() {
+    $(".content-left1").addClass("inactive");
+    $(".content-left").removeClass("inactive");
+    $(".content-right1").addClass("inactive");
+    $(".content-right").removeClass("inactive");
+    $(".web_shell").removeClass("inactive").siblings().addClass("inactive");
+}
+function mission_submit() {
+    $(".content-left1").removeClass("inactive");
+    $(".content-left").addClass("inactive");
+    $(".content-right1").removeClass("inactive");
+    $(".content-right").addClass("inactive");
+}
 //获取列表
+get_table();
 function get_table() {
     $.ajax({
         type: "GET",
@@ -149,6 +159,7 @@ function get_table() {
         }
     });
 }
+get_files();
 function get_files() {
     $.ajax({
         type: "GET",
@@ -170,31 +181,7 @@ function get_files() {
         }
     });
 }
-function web_shell() {
-    $(".content-left1").addClass("inactive");
-    $(".content-left").removeClass("inactive");
-    $(".content-right1").addClass("inactive");
-    $(".content-right").removeClass("inactive");
-    $(".web_shell").removeClass("inactive").siblings().addClass("inactive");
-}
-function mission_submit() {
-    $(".content-left1").removeClass("inactive");
-    $(".content-left").addClass("inactive");
-    $(".content-right1").removeClass("inactive");
-    $(".content-right").addClass("inactive");
-    //$(".mission_submit").removeClass("inactive").siblings().addClass("inactive");
-}
-
-//配置任务
-//function show1(btn) {
-//    $(".pro").slideToggle(1000);
-//    if (btn.innerHTML == "收起") {
-//        btn.innerHTML = "配置任务";
-//    } else {
-//        btn.innerHTML = "收起";
-//    }
-//}
-
+//配置任务，类名切换
 function sel(value) {
     if (value == "Python") {
         $("#class_name").attr("disabled", true);
@@ -202,7 +189,7 @@ function sel(value) {
         $("#class_name").removeAttr("disabled");
     }
 }
-
+//右键菜单
 function right_click(table) {
     $("#menu_right").css("left", window.event.clientX);
     $("#menu_right").css("top", window.event.clientY);
@@ -232,8 +219,18 @@ function right_click(table) {
         $("#menu_right").css("display", "none");
     }
 }
-
+//删除操作，刷新列表
 function del(){
     //TODO 记得修改
     $(this).parent().remove();
 }
+
+//配置任务
+//function show1(btn) {
+//    $(".pro").slideToggle(1000);
+//    if (btn.innerHTML == "收起") {
+//        btn.innerHTML = "配置任务";
+//    } else {
+//        btn.innerHTML = "收起";
+//    }
+//}
