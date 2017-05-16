@@ -186,19 +186,20 @@ function mission_submit() {
 }
 
 //配置任务
-function show1(btn) {
-    $(".pro").slideToggle(1000);
-    if (btn.innerHTML == "收起") {
-        btn.innerHTML = "配置任务";
-    } else {
-        btn.innerHTML = "收起";
-    }
-}
+//function show1(btn) {
+//    $(".pro").slideToggle(1000);
+//    if (btn.innerHTML == "收起") {
+//        btn.innerHTML = "配置任务";
+//    } else {
+//        btn.innerHTML = "收起";
+//    }
+//}
+
 function sel(value) {
     if (value == "Python") {
-        $(".lei").addClass("inactive");
+        $("#class_name").attr("disabled", true);
     } else {
-        $(".lei").removeClass("inactive");
+        $("#class_name").removeAttr("disabled");
     }
 }
 
@@ -230,4 +231,9 @@ function right_click(table) {
     document.onclick = function () {
         $("#menu_right").css("display", "none");
     }
+}
+
+function del(){
+    //TODO 记得修改
+    $(this).parent().remove();
 }

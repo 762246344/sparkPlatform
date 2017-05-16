@@ -48,9 +48,9 @@
                     </form>
                 </div>
                 <ul id="exec_files" class="scrollbar">
-                    <li>spark-examples_2.11-2.1.0.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark-example.jar<span><img src="img/delete.png"></span></li>
-                    <li>spark.jar<span><img src="img/delete.png"></span></li>
+                    <li>spark-examples_2.11-2.1.0.jar<span onclick="del()"><img src="img/delete.png"></span></li>
+                    <li>spark-example.jar<span onclick="del()"><img src="img/delete.png"></span></li>
+                    <li>spark.jar<span onclick="del()"><img src="img/delete.png"></span></li>
                 </ul>
             </div>
             <div id="menu_right">
@@ -65,7 +65,6 @@
             <div class="content-right">
                 <div id="sql_select" class="sql_select">
                     <div class="panel">
-                        <div class="title">Spark-SQL</div>
                         <div class="panel-top">
                             <div class="panel-title"><p>请输入SQL语句：</p></div>
                             <textarea class="scrollbar" id="code_text_sql"></textarea>
@@ -91,7 +90,6 @@
 
                 <div id="web_shell" class="web_shell">
                     <div class="panel">
-                        <div class="title">Spark-Shell</div>
                         <div class="panel-top">
                             <div class="panel-title">
                                 <p>My Snippet：</p>
@@ -124,34 +122,40 @@
             <div class="content-right1 inactive">
                 <div id="mission_submit" class="mission_submit">
                     <div class="panel">
-                        <div class="title">Spark-Job</div>
-                        <div class="control">
-                            <button class="btn btn-default" onclick="show1(this)">配置任务</button>
+                        <div class="pro">
+                            <div class="pro-left">
+                                <div>
+                                    <p>类型：</p>
+                                    <select onchange="sel(this.value)">
+                                        <option>Java</option>
+                                        <option>Scala</option>
+                                        <option>Python</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <p>执行文件：</p>
+                                    <select>
+                                    <option>spark-examples_2.11-2.1.0.jar</option>
+                                    </select>
+                                </div>
+                                <div  class="lei">
+                                    <p>类名：</p><input id="class_name" type="text"/>
+                                </div>
+                            </div>
+
+                            <div class="pro-right">
+                                <div>
+                                    <p>任务名称：</p><input type="text">
+                                </div>
+                                <div>
+                                    <p>参数：</p><input type="text">
+                                </div>
+                                <div class="control">
+                                    <button class="btn btn-success" onclick="show1(this)">提交任务</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="pro inactive">
-                            <div>
-                                <p>类型：</p><select onchange="sel(this.value)">
-                                <span class="caret"></span>
-                                <option>Java</option>
-                                <option>Scala</option>
-                                <option>Python</option>
-                            </select>
-                            </div>
-                            <div>
-                                <p>任务名称：</p><input type="text">
-                            </div>
-                            <div>
-                                <p>执行文件：</p><select>
-                                <option>spark-examples_2.11-2.1.0.jar</option>
-                                </span></select>
-                            </div>
-                            <div>
-                                <p>参数：</p><input type="text">
-                            </div>
-                            <div class="lei">
-                                <p>类名：</p><input type="text">
-                            </div>
-                        </div>
+
                         <div class="result_mission scrollbar">
                             <table class="table table-bordered table-striped">
                                 <thead>

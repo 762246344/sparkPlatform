@@ -153,6 +153,7 @@
     padding:6px;
     text-align: center;
     float:right;
+    cursor: pointer;
 }
 .content .content-left1 input[type="file"]{
     display: inline-block;
@@ -206,16 +207,11 @@
     margin-top: 25px;
     overflow: hidden;
     font-size: 16px;
+    padding-top:20px;
 }
 
 .content .inactive{
     display: none;
-}
-.content .content-right .title ,.content .content-right1 .title{
-    font-size: 20px;
-    color: #a550c0;
-    padding: 20px;
-    text-align: center;
 }
 
 .content .content-right .panel .panel-top {
@@ -288,9 +284,9 @@
     border: 1px solid #ccc;
     border-radius: 0 7px 7px 0;
     margin-top: 25px;
-    padding: 10px;
     overflow: hidden;
     font-size: 16px;
+    padding-top:20px;
 }
 .content .content-right1 .panel .result_mission {
     height: 600px;
@@ -316,12 +312,20 @@
     text-align: right;
 }
 .content .content-right1 .pro select{
-    width:25%;
+    width:70%;
     margin-bottom:5px;
 }
 .content .content-right1 .pro input[type="text"]{
-    width:25%;
-    margin-bottom:5px;
+    width:70%;
+    margin:0 0 5px 5px;
+}
+.content .content-right1 .pro .pro-left,.content .content-right1 .pro .pro-right{
+    width:50%;
+    display:block;
+    float:left;
+}
+.control{
+    margin-left:30%;
 }
     /*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
 .scrollbar::-webkit-scrollbar {
