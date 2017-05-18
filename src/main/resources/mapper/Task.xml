@@ -24,7 +24,12 @@
   -->
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.spark.platform.mapper.UserInfoMapper">
+<mapper namespace="com.spark.platform.mapper.TaskMapper">
+    <update id="updateById" parameterType="com.spark.platform.model.Task">
+        update task set id = '${id}',app_id = '${appId}',yarn_url = '${yarnUrl}',state = '${state}',stop_time = '${stopTime}' WHERE id = '${id}'
+    </update>
 
-
+    <update id="updateActiveFalse" parameterType="com.spark.platform.model.Task">
+        update task set active = 0 WHERE id = '${id}'
+    </update>
 </mapper>

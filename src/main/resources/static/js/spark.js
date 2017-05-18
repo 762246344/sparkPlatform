@@ -2,13 +2,22 @@
  * Created by pc on 2017/4/30.
  */
 
+
+var itv;
+
+//导航栏
 $(document).ready(function () {
     $("#sql-select").addClass("active");
     $("[href='#sql-select']").addClass("active");
 });
-//导航栏
+
 $(".header ul li a").click(function () {
     $(this).addClass("active").siblings(".active").removeClass("active");
+    if ($(this).html() == "Spark-Job" && $(this).attr('class') == "active") {
+        itv = setInterval(get_job_info, 3000);
+    } else {
+        clearInterval(itv);
+    }
 });
 //sql 执行
 function exec_sql() {
@@ -108,13 +117,41 @@ function clear_txt() {
 }
 //跳转
 function jump_webUI() {
-    //todo 跳转到webUI界面
-    this.href = "a.html";
+    var type = $("#lan").val().toLowerCase();
+    $.ajax({
+        type: "GET",
+        crossDomain: true,
+        url: sparkApiUrl + "/session/getUrl?type=" + type,
+        success: function (data) {
+            if (data.errno == "0") {
+                window.open(data.data.sparkUiUrl);
+            } else {
+                alert("获取url失败" + data.errmsg);
+            }
+        },
+        fail: function (data) {
+            alert("服务异常");
+        }
+    });
 }
 //跳转
 function jump_log() {
-    //todo 跳转到log界面
-    this.href = "b.html";
+    var type = $("#lan").val().toLowerCase();
+    $.ajax({
+        type: "GET",
+        crossDomain: true,
+        url: sparkApiUrl + "/session/getUrl?type=" + type,
+        success: function (data) {
+            if (data.errno == "0") {
+                window.open(data.data.driverLogUrl);
+            } else {
+                alert("获取url失败" + data.errmsg);
+            }
+        },
+        fail: function (data) {
+            alert("服务异常");
+        }
+    });
 }
 //导航切换
 function sql_select() {
@@ -146,12 +183,13 @@ function get_table() {
         url: sparkApiUrl + "/sql/allTable",
         success: function (data) {
             if (data.errno == "0") {
+                $("#table_ul").empty();
                 for (i in data.data) {
                     var li = "<li oncontextmenu=right_click('" + data.data[i] + "')>" + data.data[i] + "</li>";
                     $("#table_ul").append(li);
                 }
             } else {
-                alert("获取表失败"+data.errmsg);
+                alert("获取表失败" + data.errmsg);
             }
         },
         fail: function (data) {
@@ -168,12 +206,15 @@ function get_files() {
         success: function (data) {
             if (data.errno == "0") {
                 $("#exec_files").empty();
+                $("#job_file").empty();
                 for (i in data.data) {
-                    var li = "<li>" + data.data[i].fileName + "<span><img src='img/delete.png'></span></li>";
+                    var li = "<li>" + data.data[i].fileName + "<span onclick=\"del(\'" + data.data[i].filePath + "\')\"><img src='img/delete.png'></span></li>";
                     $("#exec_files").append(li);
+                    var option = "<option value=" + data.data[i].filePath + ">" + data.data[i].fileName + "</option>"
+                    $("#job_file").append(option);
                 }
             } else {
-                alert("获取执行文件列表失败"+data.errmsg);
+                alert("获取执行文件列表失败" + data.errmsg);
             }
         },
         fail: function (data) {
@@ -184,9 +225,9 @@ function get_files() {
 //配置任务，类名切换
 function sel(value) {
     if (value == "Python") {
-        $("#class_name").attr("disabled", true);
+        $("#job_class_name").attr("disabled", true);
     } else {
-        $("#class_name").removeAttr("disabled");
+        $("#job_class_name").removeAttr("disabled");
     }
 }
 //右键菜单
@@ -220,17 +261,100 @@ function right_click(table) {
     }
 }
 //删除操作，刷新列表
-function del(){
-    //TODO 记得修改
-    $(this).parent().remove();
+function del(file_path) {
+    if (confirm("确定删除吗？")) {
+        var request_json = {};
+        request_json.path = file_path;
+        console.log(JSON.stringify(request_json));
+        $.ajax({
+            contentType: "application/json; charset=utf-8",
+            type: "POST",
+            crossDomain: true,
+            //dataType: "json",
+            url: sparkApiUrl + "/hdfs/delete",
+            data: JSON.stringify(request_json),
+            success: function (data) {
+                if (data.errno == "0") {
+                    alert("删除成功");
+                    get_files();
+                } else {
+                    alert("删除失败：" + data.errmsg);
+                }
+            },
+            fail: function (data) {
+                alert("服务异常");
+            }
+        });
+    }
 }
 
-//配置任务
-//function show1(btn) {
-//    $(".pro").slideToggle(1000);
-//    if (btn.innerHTML == "收起") {
-//        btn.innerHTML = "配置任务";
-//    } else {
-//        btn.innerHTML = "收起";
-//    }
-//}
+function get_job_info() {
+    $.ajax({
+        type: "GET",
+        crossDomain: true,
+        url: sparkApiUrl + "/getJobInfo",
+        success: function (data) {
+            if (data.errno == "0") {
+                $("#job_table tbody").empty();
+                var row;
+                var tbody = "";
+                for (var i = 0; i < data.data.length; i++) {
+                    row = "<tr>";
+                    row += "<td>" + data.data[i].name + "</td>";
+                    row += "<td>" + data.data[i].type + "</td>";
+                    row += "<td>" + data.data[i].startTime + "</td>";
+                    row += "<td>" + data.data[i].stopTime + "</td>";
+                    row += "<td>" + data.data[i].state + "</td>";
+                    if (data.data[i].yarnUrl == null || data.data[i].yarnUrl == "") {
+                        row += "<td><a href='javascript:void(0);'>详情</td>";
+                    } else {
+                        row += "<td><a target='_blank' href='" + data.data[i].yarnUrl + "'>详情</td>";
+                    }
+                    row += "</tr>";
+                    tbody = row + tbody;
+                }
+                $("#job_table tbody").html(tbody);
+            } else {
+                alert("获取任务列表失败：" + data.errmsg);
+            }
+        },
+        fail: function (data) {
+            alert("服务异常");
+        }
+    });
+}
+
+//提交任务
+function submit_job(btn) {
+    var request_json = {};
+    request_json.type = $("#job_type").val();
+    request_json.file = $("#job_file").val();
+    if ($("#job_name").val() != "") {
+        request_json.name = $("#job_name").val();
+    }
+    if ($("#job_args").val() != "") {
+        request_json.args = $("#job_args").val().split(" ");
+    }
+    if ($("#job_type").val() != "Python") {
+        request_json.className = $("#job_class_name").val();
+    }
+    console.log(JSON.stringify(request_json));
+    $.ajax({
+        contentType: "application/json; charset=utf-8",
+        type: "POST",
+        crossDomain: true,
+        //dataType: "json",
+        url: sparkApiUrl + "/batch",
+        data: JSON.stringify(request_json),
+        success: function (data) {
+            if (data.errno == "0") {
+                alert("提交成功");
+            } else {
+                alert("提交任务失败：" + data.errmsg);
+            }
+        },
+        fail: function (data) {
+            alert("服务异常");
+        }
+    });
+}

@@ -18,6 +18,22 @@ public class Task {
     private String startTime;
     private String stopTime;
 
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", batchId=" + batchId +
+                ", name='" + name + '\'' +
+                ", appId='" + appId + '\'' +
+                ", yarnUrl='" + yarnUrl + '\'' +
+                ", state='" + state + '\'' +
+                ", type='" + type + '\'' +
+                ", active=" + active +
+                ", startTime='" + startTime + '\'' +
+                ", stopTime='" + stopTime + '\'' +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

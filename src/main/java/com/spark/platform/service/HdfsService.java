@@ -29,4 +29,14 @@ public class HdfsService {
     public Info getSubmitFiles() {
         return new Info("0", "Success", HdfsUtil.getFiles("/user/spark/pro/submitFile/"));
     }
+
+    public Info delete(String path) {
+        try {
+            HdfsUtil.delete(path, false);
+        } catch (IOException e) {
+            LOGGER.warn("", e);
+            return new Info("0", "delete hdfs file error", null);
+        }
+        return new Info("0", "Success", null);
+    }
 }

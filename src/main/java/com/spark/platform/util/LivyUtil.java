@@ -7,6 +7,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -31,7 +32,7 @@ public class LivyUtil {
         return (Session) JSONObject.toBean(HttpRequestUtil.httpPost(jo.toString(), livyUri + "/sessions"), Session.class);
     }
 
-    //@Scheduled(fixedRate = 2000 * 60)
+    @Scheduled(fixedRate = 2000 * 60)
     public void flushSession() {
         JSONArray ja = HttpRequestUtil.httpGet(livyUri + "/sessions").getJSONArray("sessions");
         Map<String, Session> map = new HashMap<String, Session>();
@@ -57,6 +58,7 @@ public class LivyUtil {
             logger.info(sSession + " " + pSession);
         }
     }
+
 
     public String code(Exec exec) {
         Integer id = null;
@@ -96,6 +98,10 @@ public class LivyUtil {
         String data = JSONObject.fromObject(batchReq).toString();
         System.out.println(data);
         return (Batch) JSONObject.toBean(HttpRequestUtil.httpPost(data, livyUri + "/batches"), Batch.class);
+    }
+
+    public Batch getBatch(Integer batchId) {
+        return (Batch) JSONObject.toBean(HttpRequestUtil.httpGet(livyUri + "/batches/" + batchId), Batch.class);
     }
 
 }

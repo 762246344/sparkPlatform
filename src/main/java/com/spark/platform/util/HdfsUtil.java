@@ -60,7 +60,7 @@ public class HdfsUtil {
         return fileList;
     }
 
-    public boolean delete(String path, boolean recursive) throws IOException {
+    public static boolean delete(String path, boolean recursive) throws IOException {
         return fs.delete(new Path(path), recursive);
     }
 

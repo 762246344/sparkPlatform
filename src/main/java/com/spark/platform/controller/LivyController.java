@@ -33,4 +33,8 @@ public class LivyController {
         return livyService.batch(batchReq);
     }
 
+    @RequestMapping(value = "/getJobInfo", method = RequestMethod.GET)
+    public Info getJobInfo() {
+        return livyService.getJobInfo();
+    }
 }

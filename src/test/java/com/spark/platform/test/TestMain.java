@@ -41,6 +41,10 @@ public class TestMain {
             e.printStackTrace();
         }
     }
+    @Test
+    public void testtest() {
+        System.out.println(new Date().getTime());
+    }
 
     public void read(BufferedReader br) throws IOException {
         String line = "";
