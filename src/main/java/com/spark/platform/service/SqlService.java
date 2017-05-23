@@ -68,7 +68,7 @@ public class SqlService {
             res = st.executeQuery(sql);
             List<String> list = new ArrayList<String>();
             while (res.next()) {
-                list.add(res.getString(1));
+                list.add(res.getString("tableName"));
             }
             return new Info("0", "success", list);
         } catch (Exception e) {
