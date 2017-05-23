@@ -60,7 +60,7 @@ function exec_sql() {
 //web-shell  执行
 function exec_shell() {
     var exec = {};
-    exec.code = code_text.value;
+    exec.code = code_text_shell.value;
     exec.kind = 'spark';
     console.log(JSON.stringify(exec));
     $.ajax({
