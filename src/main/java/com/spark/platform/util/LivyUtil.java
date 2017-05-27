@@ -32,13 +32,13 @@ public class LivyUtil {
         return (Session) JSONObject.toBean(HttpRequestUtil.httpPost(jo.toString(), livyUri + "/sessions"), Session.class);
     }
 
-    @Scheduled(fixedRate = 2000 * 60)
+    @Scheduled(fixedRate = 1000 * 60)
     public void flushSession() {
         JSONArray ja = HttpRequestUtil.httpGet(livyUri + "/sessions").getJSONArray("sessions");
         Map<String, Session> map = new HashMap<String, Session>();
         for (int i = 0; i < ja.size(); i++) {
             Session session = (Session) JSONObject.toBean(ja.getJSONObject(i), Session.class);
-            if (session.getState().equals("idle")) {
+            if (session.getState().equals("idle")||session.getState().equals("starting")) {
                 map.put(session.getKind(), session);
             }
         }
@@ -55,7 +55,7 @@ public class LivyUtil {
             createSession("pyspark");
         }
         if (sSession == null || pSession == null) {
-            logger.info(sSession + " " + pSession);
+            logger.error(sSession + " " + pSession);
         }
     }
 
