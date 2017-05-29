@@ -61,7 +61,11 @@ function exec_sql() {
 function exec_shell() {
     var exec = {};
     exec.code = code_text_shell.value;
-    exec.kind = 'spark';
+    if($("#lan").val()=="scala"){
+        exec.kind = 'spark';
+    }else {
+        exec.kind = 'pyspark';
+    }
     console.log(JSON.stringify(exec));
     $.ajax({
         contentType: "application/json; charset=utf-8",
