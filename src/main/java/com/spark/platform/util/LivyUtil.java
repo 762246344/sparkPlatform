@@ -48,13 +48,13 @@ public class LivyUtil {
             sSession = null;
             createSession("spark");
         }
-        if (map.get("pyspark") != null) {
+        /*if (map.get("pyspark") != null) {
             pSession = map.get("pyspark");
         } else {
             pSession = null;
             createSession("pyspark");
-        }
-        if (sSession == null || pSession == null) {
+        }*/
+        if (sSession == null) {
             logger.error(sSession + " " + pSession);
         }
     }
