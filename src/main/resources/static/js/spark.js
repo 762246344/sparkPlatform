@@ -61,7 +61,7 @@ function exec_sql() {
 function exec_shell() {
     var exec = {};
     exec.code = code_text_shell.value;
-    if($("#lan").val()=="scala"){
+    if($("#lan").val()=="Scala"){
         exec.kind = 'spark';
     }else {
         exec.kind = 'pyspark';
